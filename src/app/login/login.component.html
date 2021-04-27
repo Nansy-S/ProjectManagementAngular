@@ -1,0 +1,10 @@
+<h2>Authorization</h2>
+<div>
+    <p>Enter your email:
+        <input id="user-email" [(ngModel)]="account.email" placeholder="email">
+    </p>
+    <p>Enter your password:
+        <input id="user-password" [(ngModel)]="account.password" placeholder="password">
+    </p>
+    <button class="login" (click)="loginService.login()">LOGIN</button>
+</div>

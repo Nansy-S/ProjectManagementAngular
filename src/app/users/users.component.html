@@ -1,0 +1,8 @@
+<h2>users</h2>
+
+<ul class="users">
+    <li *ngFor="let account of accounts">
+            <span class="badge">{{account.accountId}}</span> - {{account.name}}
+            - {{account.surname}} - {{account.patronymic}} - {{account.email}}
+    </li>
+</ul>
