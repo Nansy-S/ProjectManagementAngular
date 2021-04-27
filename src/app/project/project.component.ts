@@ -14,6 +14,7 @@ import { ProjectService } from '../service/project.service';
 export class ProjectComponent implements OnInit {
 
     projects: Project[] = [];
+    selectedProject!: Project;
   
     constructor(private http: HttpClient,
         private ProjectService: ProjectService) { }
@@ -27,4 +28,7 @@ export class ProjectComponent implements OnInit {
      
     }
   
+    onSelect(project: Project) {
+        this.selectedProject = project;
+    }
   }

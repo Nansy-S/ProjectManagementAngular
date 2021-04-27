@@ -1,8 +1,21 @@
 <h2>users</h2>
 
-<ul class="users">
-    <li *ngFor="let account of accounts">
-            <span class="badge">{{account.accountId}}</span> - {{account.name}}
-            - {{account.surname}} - {{account.patronymic}} - {{account.email}}
-    </li>
-</ul>
+<table class="table table-hover">
+    <thead><tr class="table-primary">
+        <td>№</td>
+        <td>FULL NAME</td>
+        <td>EMAIL</td>
+    </tr></thead>
+    <tbody><tr *ngFor="let account of accounts" class="table-secondary" 
+        [class.selected]="account === selectedUser"
+        (click)="onSelect(account)">
+        <td> {{account.accountId}}</td>
+        <td> {{account.name}} {{account.surname}} {{account.patronymic}}
+        <td> {{account.email}}</td>
+    </tr></tbody>
+</table>
+
+<div *ngIf="selectedUser">
+    <h2>User Details</h2>
+    <p><span>FULL NAME: </span>{{selectedUser.name}} {{selectedUser.surname}} {{selectedUser.patronymic}}</p>
+</div>

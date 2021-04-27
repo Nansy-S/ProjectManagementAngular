@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
 
   users: User[] = [];
   accounts: Account[] = [];
+  selectedUser!: Account;
 
   constructor(private http: HttpClient,
       private UserService: UserService,
@@ -31,7 +32,9 @@ export class UsersComponent implements OnInit {
     this.AccountService.getAccounts().subscribe(accounts => this.accounts = accounts);
   }
 
-
+  onSelect(account: Account) {
+    this.selectedUser = account;
+}
 
 
 

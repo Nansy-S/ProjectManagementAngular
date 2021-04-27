@@ -10,6 +10,8 @@ import { User } from '../entity/user';
 export class UserService {
 
   private usersUrl = 'api/users';
+  users: User[] = [];
+
 
  
 }

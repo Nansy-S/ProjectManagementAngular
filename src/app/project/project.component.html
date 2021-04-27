@@ -1,1 +1,17 @@
-<p>project works!</p>
+<h2>My Projects</h2>
+<ul class="projects">
+    <li *ngFor="let project of projects" (click)="onSelect(project)"
+        [class.selected]="project === selectedProject">
+        <span>{{project.projectId}}</span> - {{project.projectCode}}
+         - {{project.summary}} - {{project.dueDate}} - {{project.currentStatus}}
+    </li>
+</ul>
+
+
+<div *ngIf="selectedProject">
+    <h2>Project Details</h2>
+    <p><span>Code: </span>{{selectedProject.projectCode}}</p>
+    <p><span>Summary: </span>{{selectedProject.summary}}</p>
+    <p><span>Due Date: </span>{{selectedProject.dueDate}}</p>
+    <p><span>Status: </span>{{selectedProject.currentStatus}}</p>
+</div>

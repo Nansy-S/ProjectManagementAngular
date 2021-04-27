@@ -10,6 +10,7 @@ import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
+import { MessagesComponent } from './messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TaskComponent } from './task/task.component';
     LoginComponent,
     ProjectComponent,
     TaskComponent,
+    MessagesComponent,
     
   ],
   imports: [
