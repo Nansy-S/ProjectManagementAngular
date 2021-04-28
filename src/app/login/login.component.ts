@@ -13,10 +13,17 @@ import { Account } from '../entity/account';
 export class LoginComponent implements OnInit {
 
   account!: Account;
+  enteredEmail = "";
+  enteredPassword = "";
 
   constructor(public loginService: LoginService) { }
 
   ngOnInit(): void {
   }
+
+  getAccount(): void {
+    this.loginService.login().subscribe(account => this.account = account);
+  }
+
 
 }

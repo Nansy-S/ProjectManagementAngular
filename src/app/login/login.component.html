@@ -1,10 +1,13 @@
 <h2>Authorization</h2>
 <div>
+    <h2>{{account.email}} Details</h2>
+    <h2>{{account.password}} Details</h2>
     <p>Enter your email:
-        <input id="user-email" [(ngModel)]="account.email" placeholder="email">
+        <input id="user-email" [(ngModel)]="enteredEmail" placeholder="email">
     </p>
     <p>Enter your password:
-        <input id="user-password" [(ngModel)]="account.password" placeholder="password">
+        <input id="user-password" [(ngModel)]="enteredPassword" placeholder="password">
     </p>
     <button class="login" (click)="loginService.login()">LOGIN</button>
+
 </div>

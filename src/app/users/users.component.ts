@@ -34,6 +34,7 @@ export class UsersComponent implements OnInit {
 
   onSelect(account: Account) {
     this.selectedUser = account;
+    
 }
 
 

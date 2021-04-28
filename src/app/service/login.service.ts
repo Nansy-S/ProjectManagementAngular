@@ -14,7 +14,10 @@ export class LoginService {
 
   private loginUrl = 'http://localhost:8080/login';
   
-  account!: Account;
+  account?: Account;
+
+  enteredEmail = "";
+  enteredPassword = "";
   
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
