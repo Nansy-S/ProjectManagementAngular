@@ -20,12 +20,12 @@ export class ProjectComponent implements OnInit {
         private ProjectService: ProjectService) { }
   
     ngOnInit(): void {
-      this.getUsers();
+      this.geProjects();
   
     }
   
-    getUsers(): void {
-     
+    geProjects(): void {
+     this.ProjectService.getProjects().subscribe(projects => this.projects = projects);
     }
   
     onSelect(project: Project) {

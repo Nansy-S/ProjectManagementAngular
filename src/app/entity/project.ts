@@ -2,6 +2,6 @@ export interface Project {
     projectId: number;
     projectCode: string;
     summary: string;
-    dueDate: Date;
+    dueDate: string;
     currentStatus: string;
 }
