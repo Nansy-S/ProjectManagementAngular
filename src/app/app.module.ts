@@ -11,8 +11,6 @@ import { LoginComponent } from './login/login.component';
 import { ProjectComponent } from './project/project.component';
 import { TaskComponent } from './task/task.component';
 import { MessagesComponent } from './messages/messages.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardManagerComponent } from './board-manager/board-manager.component';
 
 import { MatSliderModule } from '@angular/material/slider';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -24,6 +22,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { LoginInterceptor } from './helpers/login.interceptor';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +32,8 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
     ProjectComponent,
     TaskComponent,
     MessagesComponent,
-    BoardAdminComponent,
-    BoardManagerComponent,
     ProjectDetailComponent,
+    DashboardComponent,
     
   ],
   imports: [

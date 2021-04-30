@@ -7,22 +7,19 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 
 import { TaskComponent } from './task/task.component';
 import { LoginComponent } from './login/login.component';
-
-
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardManagerComponent } from './board-manager/board-manager.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+
+  { path: '', component: DashboardComponent },
 
   { path: 'projects', component: ProjectComponent },
   { path: 'projects/detail/:id', component: ProjectDetailComponent },
 
   { path: 'users', component: UsersComponent },
-  { path: 'admin', component: BoardAdminComponent },
-  { path: 'manager', component: BoardManagerComponent },
   { path: 'tasks', component: TaskComponent },
-  { path: '', redirectTo: '', pathMatch: 'full' }
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

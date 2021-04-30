@@ -22,6 +22,7 @@ export class ProjectDetailComponent implements OnInit {
     private projectService: ProjectService) { }
 
   ngOnInit(): void {
+    this.getProjectDetail();
   }
 
   getProjectDetail(): void {
@@ -30,8 +31,11 @@ export class ProjectDetailComponent implements OnInit {
       .subscribe(project => this.project = project);
   }
 
-  
-
   displayTasks(){
+    if (!this.isViewTask) {
+      this.isViewTask = true;
+    } else {
+      this.isViewTask = false;
+    }
   }
 }

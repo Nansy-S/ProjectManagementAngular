@@ -4,9 +4,6 @@ import { Router } from '@angular/router';
 import { LoginService } from '../service/login.service'
 import { TokenStorageService } from '../service/token-storage.service'
 
-import { Account } from '../entity/account';
-import { CompileShallowModuleMetadata } from '@angular/compiler';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

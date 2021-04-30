@@ -1,7 +1,10 @@
+<div class="projects">
 <h2>Projects by Project manager </h2>
 
+<button class="btn btn-dark bn-new-project" (click)="addNewProject()">New Project</button>
+
 <table class="table table-hover">
-    <thead><tr class="table-primary">
+    <thead><tr class="projects-header-dark">
         <td>CODE</td>
         <td>SUMMARY</td>
         <td>DUE DATE</td>
@@ -17,7 +20,6 @@
     </tr></tbody>
 </table>
 
-<button class="btn btn-success" (click)="addNewProject()">New Project</button>
 <div>
     <div class="submit-form">
       <div *ngIf="addForm">
@@ -59,3 +61,5 @@
     </div>
     <div *ngIf="isAddedProject" class="alert alert-success"> Project added! </div>
   </div>
+
+</div>

@@ -1,13 +1,14 @@
+<div class="project-detail">
+    <div *ngIf="project">
+        <h2>Project Details</h2>
+        <p><span>Code: </span>{{project.projectCode}}</p>
+        <p><span>Summary: </span>{{project.summary}}</p>
+        <p><span>Due Date: </span>{{project.dueDate}}</p>
+        <p><span>Status: </span>{{project.currentStatus}}</p>
 
-<div *ngIf="project">
-    <h2>Project Details</h2>
-    <p><span>Code: </span>{{project.projectCode}}</p>
-    <p><span>Summary: </span>{{project.summary}}</p>
-    <p><span>Due Date: </span>{{project.dueDate}}</p>
-    <p><span>Status: </span>{{project.currentStatus}}</p>
-
-    <button class="btn btn-success" (click)="displayTasks()">View Tasks</button><br>
-    <div *ngIf="isViewTask">
-        <app-task [project]="project"></app-task>
-    </div>
+        <button class="btn btn-dark" (click)="displayTasks()">View Tasks</button><br>
+        <div *ngIf="isViewTask">
+            <app-task [project]="project"></app-task>
+        </div>
+    </div>  
 </div>
