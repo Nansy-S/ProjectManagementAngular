@@ -33,7 +33,7 @@ export class DashboardComponent implements OnInit {
 
     if (this.userRole === 'Project manager') {
       this.showManagerBoard = true;
-      this.router.navigate(['/projects']);
+      //this.router.navigate(['/projects']);
     }
   }
 

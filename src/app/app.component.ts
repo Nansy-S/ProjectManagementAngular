@@ -29,10 +29,16 @@ export class AppComponent implements OnInit {
 
     if (this.isLoggedIn) {
 
-      //const user = this.tokenStorageService.getUser();
-      //this.role = user.roles;
-      
-      this.router.navigate(['/']);
+      const user = this.tokenStorageService.getUser();
+      this.role = user.roles;
+      if (this.role === 'Administrator') {
+        //this.router.navigate(['/admin']);
+      }
+  
+      if (this.role === 'Project manager') {
+        this.router.navigate(['/projects']);
+      }
+      //this.router.navigate(['/']);
 
     } else {
       this.router.navigate(['login']);

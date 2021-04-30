@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.header-table-dark {
+    background: rgb(73, 73, 73);
+    color: white;
+}

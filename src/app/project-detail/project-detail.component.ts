@@ -11,6 +11,7 @@ import { ProjectService } from '../service/project.service';
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.css']
 })
+
 export class ProjectDetailComponent implements OnInit {
 
   project!: Project;
