@@ -24,6 +24,7 @@ import { LoginInterceptor } from './helpers/login.interceptor';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { TaskDetailComponent } from './task-detail/task-detail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
     ProjectDetailComponent,
     DashboardComponent,
     AddTaskComponent,
+    TaskDetailComponent,
     
   ],
   imports: [

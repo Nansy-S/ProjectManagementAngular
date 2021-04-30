@@ -28,11 +28,11 @@ export class LoginComponent implements OnInit {
       this.role = this.tokenStorage.getUser().role;
 
       if (this.role === 'Administrator') {
-        this.router.navigate(['/admin']);
+        this.router.navigate(['/users']);
       }
     
       if (this.role === 'Project manager') {
-        this.router.navigate(['/manager']);
+        this.router.navigate(['/projects']);
       }
     }
   }

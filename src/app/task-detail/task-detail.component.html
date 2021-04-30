@@ -1,0 +1,41 @@
+<div class="task-detail">
+    <div *ngIf="task">
+        <h2>Task Details</h2>
+        <p><span>Code: </span>{{task.taskCode}}</p>
+        <p><span>Priority: </span>{{task.priority}}</p>
+        <p><span>Status: </span>{{task.currentStatus}}</p>
+        <p><span>Due Date: </span>{{task.dueDate}}</p>
+        <p><span>Estimation Time: </span>{{task.estimationTime}}</p>
+        <p><span>Description: </span>{{task.description}}</p>
+        <br>
+        <p><span>Assignee: </span></p>
+        <p><span>Full name: </span>
+            {{task.assigneeInfo.accountInfo.name}} 
+            {{task.assigneeInfo.accountInfo.patronymic}}
+            {{task.assigneeInfo.accountInfo.surname}} </p>
+            <p><span>Email: </span>{{task.assigneeInfo.accountInfo.email}}</p>
+            <p><span>Position: </span>{{task.assigneeInfo.position}}</p>
+            <p><span>Phone: </span>{{task.assigneeInfo.phone}}</p>
+
+        <button *ngIf="task.currentStatus == 'Open'" class="btn btn-dark" 
+            (click)="appointAssignee()">Appoint Assignee</button><br>
+
+        <div *ngIf="isAppointAssignee">
+            
+            <div class="submit-form">
+                <div>
+                  <div class="form-group">
+                    <div class="dropdown">
+                      <label for="priority">Assignee: </label>
+                      <select [(ngModel)]="newAssignee">
+                        <option *ngFor="let assignee of assigneeList" 
+                        [ngValue]="assignee.accountId"> {{assignee.name}} {{assignee.patronymic}} {{assignee.surname}} </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <button class="btn btn-success" (click)="saveAssidnee()">Save</button>
+        </div>
+    </div>  
+</div>

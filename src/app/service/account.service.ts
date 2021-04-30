@@ -13,6 +13,7 @@ import { Account } from '../entity/account';
 export class AccountService {
 
   private userListUrl = 'http://localhost:8080/api/users/';
+  private userByRoleUrl = 'http://localhost:8080/api/users/';
 
   accounts: Account[] = [];
 
@@ -23,8 +24,11 @@ export class AccountService {
   constructor(private http: HttpClient) { }
 
   getAccounts(): Observable<Account[]> {
-    const users = this.http.get<Account[]>(this.userListUrl);
-    return users;
+    return this.http.get<Account[]>(this.userListUrl);
+  }
+
+  getUsersByRole(role: string): Observable<Account[]> {
+    return this.http.get<Account[]>(this.userByRoleUrl + role);
   }
 
 }

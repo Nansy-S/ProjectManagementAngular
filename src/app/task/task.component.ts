@@ -38,8 +38,8 @@ export class TaskComponent implements OnInit {
       this.taskService.getTasks(this.project).subscribe(tasks => this.tasks = tasks);
     }
 
-    onSelect(selectedTask: Task){
-
+    goToTaskDetail(task: Task) {
+      this.route.navigate(['tasks/detail/' + task.taskId]);
     }
 
     addNewTask() {

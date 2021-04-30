@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../service/token-storage.service';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,7 +11,8 @@ import { TokenStorageService } from '../service/token-storage.service';
 export class DashboardComponent implements OnInit {
 
   constructor(private tokenStorageService: TokenStorageService,
-    private router: Router) { }
+      private router: Router,
+      private loginService: LoginService) { }
 
   title = 'Project Management Application';
   
@@ -21,23 +23,26 @@ export class DashboardComponent implements OnInit {
   userRole?:string;
   
   ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+     this.userRole = this.tokenStorageService.getUser().role;
     
-    this.userRole = this.tokenStorageService.getUser().role;
-    
-    console.log(this.userRole);
+      console.log(this.userRole);
 
-    if (this.userRole === 'Administrator') {
-      this.showAdminBoard = true;
-      //this.router.navigate(['/admin']);
-    }
+     if (this.userRole === 'Administrator') {
+       this.showAdminBoard = true;
+       //this.router.navigate(['/admin']);
+      }
 
-    if (this.userRole === 'Project manager') {
-      this.showManagerBoard = true;
-      //this.router.navigate(['/projects']);
+      if (this.userRole === 'Project manager') {
+        this.showManagerBoard = true;
+        //this.router.navigate(['/projects']);
+      }
     }
   }
 
   logout(): void {
+    this.isLoggedIn = false;
     this.tokenStorageService.signOut();
     window.location.reload();
   }
