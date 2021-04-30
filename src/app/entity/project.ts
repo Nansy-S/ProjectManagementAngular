@@ -1,7 +1,10 @@
+import { ProjectAction } from './project-action'
+
 export interface Project {
-    projectId: number;
-    projectCode: string;
-    summary: string;
-    dueDate: string;
-    currentStatus: string;
+    projectId?: number;
+    projectCode?: string;
+    summary?: string;
+    dueDate?: Date;
+    currentStatus?: string;
+    projectActions?: ProjectAction;
 }

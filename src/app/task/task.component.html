@@ -1,0 +1,71 @@
+
+<table class="table table-hover">
+    <thead><tr class="table-primary">
+        <td>CODE</td>
+        <td>PRIORITY</td>
+        <td>DUE DATE</td>
+        <td>ECTIMATION TIME</td>
+        <td>STATUS</td>
+        <td>ASSIGNEE</td>
+        <td>DESCRIPTION</td>
+    </tr></thead>
+    <tbody><tr *ngFor="let task of tasks" class="table-secondary" 
+        [class.selected]="task === selectedTask"
+        (click)="onSelect(task)">
+        <td> {{task.taskCode}} </td>
+        <td> {{task.priority}} </td>
+        <td> {{task.dueDate}} </td>
+        <td> {{task.estimationTime}} </td>
+        <td> {{task.currentStatus}} </td>
+        <td> {{task.assigneeInfo.accountInfo.name}} 
+             {{task.assigneeInfo.accountInfo.patronymic}}
+             {{task.assigneeInfo.accountInfo.surname}} 
+        </td>
+        <td> {{task.description}} </td>
+    </tr></tbody>
+</table>
+
+
+<button class="btn btn-success" (click)="addNewTask()">New Task</button>
+<div>
+    <div class="submit-form">
+      <div *ngIf="addForm">
+
+        <div class="form-group">
+          <div class="dropdown">
+            <label for="priority">Priority: </label>
+            <select [(ngModel)]="newTask.priority">
+              <option *ngFor="let priority of priorityList" [ngValue]="priority"> {{priority}} </option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+            <label for="dueDate">Due Date</label>
+            <input 
+            type="datetime-local" 
+            class="form-control" 
+            [(ngModel)]="newTask.dueDate" />
+        </div>
+
+        <div class="form-group">
+            <label for="estimationTime">Estimation Time </label>
+            <input type="number" min="1" step="1" value="1" [(ngModel)]="newTask.estimationTime"/>
+        </div>
+
+        <div class="form-group">
+          <label for="description">Description</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="newTask.description" />
+        </div>
+
+        
+    
+        <button class="btn btn-success" (click)="add()">Add</button>
+      </div>
+    </div>
+    <div *ngIf="isAddedTask" class="alert alert-success"> Task added! </div>
+  </div>

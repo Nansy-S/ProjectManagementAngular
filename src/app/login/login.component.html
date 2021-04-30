@@ -1,6 +1,8 @@
-<h2>Authorization</h2>
-<div class="col-md-12">
-    <div class="card card-container">
+
+
+<div class="main">
+  <div class="col-md-6 col-sm-12">
+     <div class="login-form">
       <form class="form-horizontal"
         *ngIf="!isLoggedIn"
         name="form"
@@ -8,16 +10,15 @@
         #f="ngForm"
         novalidate
       >
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            class="form-control"
-            name="email"
-            [(ngModel)]="form.email"
+      <h2>Authorization</h2>
+      <div class="form-group">
+        <label>E-mail</label>
+          <input type="text" class="form-control" name="email" id="inputEmail" placeholder="E-mail"
+          [(ngModel)]="form.email"
             required
-            #email="ngModel"
-          />
+            #email="ngModel">
+            <i class="fa fa-user"></i>
+
           <div
             class="alert alert-danger"
             role="alert"
@@ -32,6 +33,7 @@
             type="password"
             class="form-control"
             name="password"
+            placeholder="Password"
             [(ngModel)]="form.password"
             required
             minlength="6"
@@ -65,7 +67,7 @@
       </form>
   
       <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in as {{ roles }}.
+        Logged in as {{ role }}.
       </div>
     </div>
   </div>

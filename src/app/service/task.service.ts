@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
+import { Task } from '../entity/task';
 import { Project } from '../entity/project';
 
 import { MessageService } from '../service/message.service';
@@ -12,13 +13,12 @@ import { MessageService } from '../service/message.service';
   providedIn: 'root'
 })
 
-export class ProjectService {
+export class TaskService {
 
-  private projectListUrl = 'http://localhost:8080/api/projects/';
-  private projectDetailUrl = 'http://localhost:8080/api/projects/';
-  private addProjectUrl = 'http://localhost:8080/api/projects/add';
+  private taskListUrl = 'http://localhost:8080/api/projects/';
+  private addTaskUrl = 'http://localhost:8080/api/tasks/add';
 
-  projects: Project[] = [];
+  tasks: Task[] = [];
 
   httpOptions = {
     headers: new HttpHeaders({ 'Accept': 'application/json',
@@ -28,28 +28,23 @@ export class ProjectService {
   constructor(private http: HttpClient,
     private messageService: MessageService) { }
 
-  /** GET Projects from the server */
-  getProjects(): Observable<Project[]> {
-    return this.http.get<Project[]>(this.projectListUrl).pipe(
-      catchError(this.handleError<Project[]>('getProjects', []))
-    );
+  /** GET Tasks from the server */
+  getTasks(project: Project): Observable<Task[]> {
+    return this.http.get<Task[]>(this.taskListUrl + project.projectId + "/tasks");
+  }  
+
+  create(task: Task): Observable<any> {
+    return this.http.post(this.addTaskUrl, task);
   }
 
-  /** GET Projects Detail from the server */
-  getProjectDetail(id: number): Observable<Project> {
-    return this.http.get<Project>(this.projectDetailUrl + id).pipe(
-      catchError(this.handleError<Project>('getProject'))
-    );
-  }
 
-  create(project: Project): Observable<any> {
-    return this.http.post(this.addProjectUrl, project);
-  }
+
+
 
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`ProjectService: ${message}`);
+    this.messageService.add(`TaskService: ${message}`);
   }
 
   /** Handle Http operation that failed */
@@ -66,4 +61,5 @@ export class ProjectService {
       return of(result as T);
     };
   }
+
 }

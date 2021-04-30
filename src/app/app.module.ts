@@ -14,7 +14,16 @@ import { MessagesComponent } from './messages/messages.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import { BoardManagerComponent } from './board-manager/board-manager.component';
 
+import { MatSliderModule } from '@angular/material/slider';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { LoginInterceptor } from './helpers/login.interceptor';
+import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +35,7 @@ import { LoginInterceptor } from './helpers/login.interceptor';
     MessagesComponent,
     BoardAdminComponent,
     BoardManagerComponent,
+    ProjectDetailComponent,
     
   ],
   imports: [
@@ -34,7 +44,13 @@ import { LoginInterceptor } from './helpers/login.interceptor';
     AppRoutingModule,
     HttpClientModule,
 
-    
+    BrowserAnimationsModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+
   ],
   providers: [
     {

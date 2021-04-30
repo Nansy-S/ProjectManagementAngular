@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TokenStorageService } from './service/token-storage.service';
-
-import { Account } from './entity/account'
-import { Action } from './entity/action'
-
-import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { LoginService } from './service/login.service';
 
@@ -16,7 +12,7 @@ import { LoginService } from './service/login.service';
 })
 
 export class AppComponent implements OnInit {
-  private roles: string[] = [];
+  role?: string;
   isLoggedIn = false;
 
   showAdminBoard = false;
@@ -26,22 +22,29 @@ export class AppComponent implements OnInit {
 
   title = 'Project Management Application';
 
-  currentUser!: Account;
-  currentUserRole!: string;
-
-  constructor(private LoginService: LoginService, private tokenStorageService: TokenStorageService) {}
+  constructor(private LoginService: LoginService, 
+    private tokenStorageService: TokenStorageService, 
+    private router: Router) {}
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
-      this.roles = user.roles;
 
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showManagerBoard = this.roles.includes('ROLE_MANAGER');
-
+      this.role = user.roles;
       this.username = user.username;
+      
+
+      if (this.role === 'Administrator') {
+        this.showAdminBoard = true;
+        this.router.navigate(['/admin']);
+      }
+
+      if (this.role === 'Project manager') {
+        this.showManagerBoard = true;
+        this.router.navigate(['/manager']);
+      }
     }
   }
 
@@ -50,8 +53,7 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
 
-  setCurrentUser() {
-   // this.LoginService.login().subscribe(currentUser => this.currentUser = currentUser);
-   // console.log(this.currentUser);
+  getCurrentUserInfo() {
+
   }
 }

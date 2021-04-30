@@ -10,6 +10,7 @@ export class BoardManagerComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
