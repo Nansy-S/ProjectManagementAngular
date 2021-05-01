@@ -1,0 +1,17 @@
+<!-- Modal -->
+<div class="dialog d-warning"> 
+    <div mat-dialog-content>
+
+        <mat-form-field appearance="fill" floatLabel="never" color="primary" class="form-select select-assignee">
+            <mat-icon class="yellow-icon">warning</mat-icon>
+            <h1 mat-dialog-title>Attention</h1>
+            <div mat-dialog-content class="warn-context">
+                <p> {{ data.context }} </p>
+            </div>
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+        <button class="cansel-btn" (click)="onNoClick()">Cansel</button>
+        <button class="save-btn" [mat-dialog-close] ="true" cdkFocusInitial>Сontinue</button>
+    </div>
+</div>

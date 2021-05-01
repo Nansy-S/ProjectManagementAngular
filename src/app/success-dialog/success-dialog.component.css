@@ -1,0 +1,28 @@
+.green-icon {
+    color: rgb(19, 196, 27);
+    font-size: 85px;
+    margin-top: 0px;
+    margin-left: 110px;
+}
+
+.d-success {
+    font-family: 'Verdana'; 
+    font-size: 18px; 
+    font-style: normal;
+}
+
+.content {
+    width: 340px;
+    height: 200px;
+}
+
+.success-context {
+    margin-top: 20px;
+    width: 330px;
+    text-align: center;
+}
+
+.ok-btn {
+    margin-left: 100px;
+    margin-top: -30px;
+}

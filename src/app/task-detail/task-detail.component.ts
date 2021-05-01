@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 import { Task } from '../entity/task';
 import { Account } from '../entity/account';
 
+import { ChangeTaskAssigneeComponent } from '../change-task-assignee/change-task-assignee.component';
+import { WarningDialogComponent } from '../warning-dialog/warning-dialog.component';
+import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
+
+
+import { TokenStorageService } from '../service/token-storage.service'
 import { TaskService } from '../service/task.service';
 import { AccountService } from '../service/account.service';
 
@@ -13,45 +19,145 @@ import { AccountService } from '../service/account.service';
   templateUrl: './task-detail.component.html',
   styleUrls: ['./task-detail.component.css']
 })
+
 export class TaskDetailComponent implements OnInit {
 
   task!: Task;
-  newAssignee = 0;
+  currentTaskStatus = "";
+  newAssigneeId = 0;
 
+  currentUserId = 0;
   assigneeRole = "";
-  isAppointAssignee = false;
+  warnMsg = "";
+
+  isAssigneTaskButton = false;
+  isAssigneTask = false;
+  isSuccessAssigneTask = false;
+
+  dataFromDialog!: DialogChangeTaskAssigneeData;
+  warningDialogData!: DialogDataMsg;
 
   assigneeList: Account[] = [];
+  responce = <Responce>{
+    newAssigneeId: 0,
+    isChange: true
+  }
 
   constructor(private route: ActivatedRoute,
+    private tokenStorage: TokenStorageService,
     private taskService: TaskService,
-    private accountService: AccountService) { }
+    private accountService: AccountService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getTaskDetail();
+    this.currentUserId = this.tokenStorage.getUser().id;
   }
 
   getTaskDetail(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.taskService.getTaskDetail(id)
-      .subscribe(task => this.task = task);
+      .subscribe((data:Task) => {
+        this.task = data;
+      } );
   }
 
-  appointAssignee() {
-    this.isAppointAssignee = true;
-    this.assigneeRole = "Developer";
-    this.getUsersByRole();
+  assigneTask(task: Task) {
+    let isWarnDialog = false;
+    if(task.currentStatus == "Open" || task.currentStatus == "Reopened") {
+      this.assigneeRole = "Developer";
+    }
+    if(task.currentStatus == "Resolved") {
+      this.assigneeRole = "Tester";
+      isWarnDialog = true;
+      this.warnMsg = "Task was resolved but not ready for test. Continue change assignee?";
+    }
+    if(task.currentStatus == "In progress") {
+      this.assigneeRole = "Developer";
+      isWarnDialog = true;
+      this.warnMsg = "Task in progress. Are you sure you want to change assignee?";
+    }
+    if(task.currentStatus == "Ready for Test") {
+      this.assigneeRole = "Tester";
+    }
+    
+    if(!isWarnDialog) {
+      this.changeAssignee();
+    } else {
+      const dialogRefWarn = this.dialog.open(WarningDialogComponent, {
+        panelClass: 'custom-dialog',
+        data: { context: this.warnMsg }
+      });
+
+      dialogRefWarn.afterClosed().subscribe(result => {
+        if(result) {
+          this.changeAssignee();
+        }
+      });
+    }
   }
 
-  saveAssidnee() {
-    console.log(this.newAssignee);
-    this.task.assignee = this.newAssignee;
+  changeAssignee() {
+    this.accountService.getUsersByRole(this.assigneeRole)
+        .subscribe(assigneeList => {
+          this.assigneeList = assigneeList;
+
+          const dialogRef = this.dialog.open(ChangeTaskAssigneeComponent, {
+            panelClass: 'custom-dialog',
+            data: {newAssigneeId: 0, assigneeList: this.assigneeList}
+          });
+
+          dialogRef.afterClosed().subscribe(result => {
+            this.responce = result;
+            console.log(this.responce.isChange);
+            if(this.responce.isChange) {
+            this.newAssigneeId = this.responce.newAssigneeId;
+              this.saveAssignee();
+            }
+          });
+      }); 
+  }
+  
+
+  saveAssignee() {
+    console.log(this.newAssigneeId);
+    this.task.assignee = this.newAssigneeId;
     this.taskService.changeTaskAssignee(this.task)
-      .subscribe(task => this.task = task);
+      .subscribe(task => {
+        this.task = task;
+        this.isSuccessAssigneTask = true;
+      });
+      this.diaspaySuccessDialog("Assignee changed successfully!");
   }
 
   getUsersByRole() {
     this.accountService.getUsersByRole(this.assigneeRole)
       .subscribe(assigneeList => this.assigneeList = assigneeList);
   }
+
+  diaspaySuccessDialog(msg: string) {
+    const dialogRef = this.dialog.open(SuccessDialogComponent, {
+      panelClass: 'custom-dialog',
+      data: { context: msg }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result) {
+        window.location.reload();
+      }
+    });
+  }
+}
+
+export interface DialogChangeTaskAssigneeData {
+  newAssigneeId: number;
+  assigneeList: Account[];
+}
+
+export interface DialogDataMsg {
+  contect: string;
+}
+
+export interface Responce {
+  newAssigneeId: number;
+  isChange: boolean;
 }

@@ -4,7 +4,7 @@
         <p><span>Code: </span>{{task.taskCode}}</p>
         <p><span>Priority: </span>{{task.priority}}</p>
         <p><span>Status: </span>{{task.currentStatus}}</p>
-        <p><span>Due Date: </span>{{task.dueDate}}</p>
+        <p><span>Due Date: </span>{{task.dueDate | date:'medium'}}</p>
         <p><span>Estimation Time: </span>{{task.estimationTime}}</p>
         <p><span>Description: </span>{{task.description}}</p>
         <br>
@@ -17,25 +17,6 @@
             <p><span>Position: </span>{{task.assigneeInfo.position}}</p>
             <p><span>Phone: </span>{{task.assigneeInfo.phone}}</p>
 
-        <button *ngIf="task.currentStatus == 'Open'" class="btn btn-dark" 
-            (click)="appointAssignee()">Appoint Assignee</button><br>
-
-        <div *ngIf="isAppointAssignee">
-            
-            <div class="submit-form">
-                <div>
-                  <div class="form-group">
-                    <div class="dropdown">
-                      <label for="priority">Assignee: </label>
-                      <select [(ngModel)]="newAssignee">
-                        <option *ngFor="let assignee of assigneeList" 
-                        [ngValue]="assignee.accountId"> {{assignee.name}} {{assignee.patronymic}} {{assignee.surname}} </option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
-            </div>
-            <button class="btn btn-success" (click)="saveAssidnee()">Save</button>
-        </div>
+        <button class="btn btn-dark" (click)="assigneTask(task)">Change Assigne</button>
     </div>  
 </div>

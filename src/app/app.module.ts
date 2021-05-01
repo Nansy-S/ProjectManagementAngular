@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,6 +18,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldControl } from '@angular/material/form-field';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -25,6 +30,9 @@ import { ProjectDetailComponent } from './project-detail/project-detail.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TaskDetailComponent } from './task-detail/task-detail.component';
+import { ChangeTaskAssigneeComponent } from './change-task-assignee/change-task-assignee.component';
+import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
+import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +46,13 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     DashboardComponent,
     AddTaskComponent,
     TaskDetailComponent,
-    
+    ChangeTaskAssigneeComponent,
+    WarningDialogComponent,
+    SuccessDialogComponent,
+
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
@@ -52,7 +64,19 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-
+    MatButtonModule,
+    MatDialogModule,
+    MatIconModule,
+    
+  ],
+  exports: [
+    MatInputModule
+  ],
+  entryComponents: [
+    MatDialogModule
+  ],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
   ],
   providers: [
     {
@@ -60,6 +84,6 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
     useClass: LoginInterceptor,
     multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

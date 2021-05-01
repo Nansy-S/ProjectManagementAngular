@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Task } from '../entity/task';
 import { Project } from '../entity/project';
@@ -38,8 +39,10 @@ export class TaskService {
   /** GET Tasks Detail from the server */
   getTaskDetail(id: number): Observable<Task> {
     return this.http.get<Task>(this.taskDetailUrl + id).pipe(
-      catchError(this.handleError<Task>('getTask'))
-    );
+      map((task: Task) => {
+        console.log(task);
+        return task;
+      }));
   }
 
   changeTaskAssignee(task: Task): Observable<any> {

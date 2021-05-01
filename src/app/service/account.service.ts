@@ -13,7 +13,7 @@ import { Account } from '../entity/account';
 export class AccountService {
 
   private userListUrl = 'http://localhost:8080/api/users/';
-  private userByRoleUrl = 'http://localhost:8080/api/users/';
+  private userByRoleUrl = 'http://localhost:8080/api/users/role/';
 
   accounts: Account[] = [];
 

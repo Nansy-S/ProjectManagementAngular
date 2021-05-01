@@ -1,9 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; font-family: 'Verdana'; font-size: 20px; font-style: normal; }
+body { margin: 0; font-family: 'Verdana'; font-size: 20px; font-style: normal;}
 
 .header-table-dark {
     background: rgb(73, 73, 73);
     color: white;
 }
+
+.custom-dialog {
+    border: 1px solid rgb(73, 73, 73);
+    border-radius: 0.6em;
+    font-family: 'Verdana';
+    width: 350px;
+}
+
+  .btn {
+    min-width: 130px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    text-transform: uppercase; 
+    padding: 15px;
+    margin: 30px 40px;
+    font-weight: 600;
+    transition: 0.5s;
+  }
+  .btn:hover, .btn:focus {
+    color: #fff;
+    outline: 0;
+  }
+  
+
+  
+  .save-btn {
+    min-width: 100px;
+    height: 40px;
+    margin: 20px 10px;
+    border: 2px solid #0d8602;
+    border-radius: 0.6em;
+    color: #0d8602;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  }
+  .save-btn:hover {
+    color: #fff;
+    box-shadow: 0 0 40px 40px #209415 inset;
+  }
+
+  .cansel-btn {
+    min-width: 100px;
+    height: 40px;
+    margin: 20px 10px 20px 35px;
+    margin-left: 35px;
+    border: 2px solid #6b6b6b;
+    border-radius: 0.6em;
+    color: #6b6b6b;
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  }
+  .cansel-btn:hover {
+    color: #fff;
+    box-shadow: 0 0 40px 40px #6b6b6b inset;
+  }

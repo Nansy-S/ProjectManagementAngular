@@ -1,0 +1,13 @@
+h1 {
+    font-family: 'Verdana'; 
+    font-size: 20px; 
+    font-weight: bold;
+    margin-left: 60px;
+    margin-bottom: 20px;
+    color: rgb(77, 77, 77);
+}
+
+.select-assignee {
+    width: 295px;
+    font-size: 18px; 
+}

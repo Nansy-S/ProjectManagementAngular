@@ -15,7 +15,7 @@
       class="table-secondary">
         <td> {{project.projectCode}} </td>
         <td> {{project.summary}} </td>
-        <td> {{project.dueDate}} </td>
+        <td> {{project.dueDate | date:'medium'}} </td>
         <td> {{project.currentStatus}} </td>
     </tr></tbody>
 </table>

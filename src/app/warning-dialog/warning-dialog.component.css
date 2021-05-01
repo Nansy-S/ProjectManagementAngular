@@ -1,0 +1,27 @@
+.yellow-icon {
+    color: rgb(224, 211, 16);
+    font-size: 85px;
+    margin-top: -20px;
+    margin-left: 40px;
+}
+
+.d-warning {
+    font-family: 'Verdana'; 
+    font-size: 18px; 
+    font-style: normal;
+}
+
+.d-warning h1 {
+    font-weight: bold;
+    position: relative;
+    top: -60px;
+    left: 140px;
+    color: rgb(77, 77, 77);
+}
+
+.warn-context {
+    margin-top: -20px;
+    width: 340px;
+    margin-bottom: -30px;
+    text-align: center;
+}
