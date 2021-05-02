@@ -10,14 +10,14 @@ import { LoginService } from '../service/login.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private tokenStorageService: TokenStorageService,
-      private router: Router,
-      private loginService: LoginService) { }
+  constructor(private tokenStorageService: TokenStorageService) { }
 
   title = 'Project Management Application';
   
   showAdminBoard = false;
   showManagerBoard = false;
+  showDeveloperBoard = false;
+  showTesterBoard = false;
 
   isLoggedIn = false;
   userRole?:string;
@@ -25,18 +25,18 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
-     this.userRole = this.tokenStorageService.getUser().role;
-    
-      console.log(this.userRole);
-
-     if (this.userRole === 'Administrator') {
-       this.showAdminBoard = true;
-       //this.router.navigate(['/admin']);
+      this.userRole = this.tokenStorageService.getUser().role;
+      if (this.userRole === 'Administrator') {
+        this.showAdminBoard = true;
       }
-
       if (this.userRole === 'Project manager') {
         this.showManagerBoard = true;
-        //this.router.navigate(['/projects']);
+      }
+      if (this.userRole === 'Developer') {
+        this.showDeveloperBoard = true;
+      }
+      if (this.userRole === 'Tester') {
+        this.showTesterBoard = true;
       }
     }
   }

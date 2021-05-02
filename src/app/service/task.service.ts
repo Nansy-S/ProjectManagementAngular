@@ -16,7 +16,9 @@ import { MessageService } from '../service/message.service';
 
 export class TaskService {
 
-  private taskListUrl = 'http://localhost:8080/api/projects/';
+  private taskListByProjectUrl = 'http://localhost:8080/api/projects/';
+  private taskListByReporterUrl = 'http://localhost:8080/api/reporter/';
+  private taskListByAssigneeUrl = 'http://localhost:8080/api/assignee/';
   private taskDetailUrl = 'http://localhost:8080/api/tasks/';
   private addTaskUrl = 'http://localhost:8080/api/tasks/add';
   private changeTaskAssigneeUrl = 'http://localhost:8080/api/tasks/change/assignee';
@@ -33,9 +35,17 @@ export class TaskService {
     private messageService: MessageService) { }
 
   /** GET Tasks from the server */
-  getTasks(project: Project): Observable<Task[]> {
-    return this.http.get<Task[]>(this.taskListUrl + project.projectId + "/tasks");
+  getTasksByProject(project: Project): Observable<Task[]> {
+    return this.http.get<Task[]>(this.taskListByProjectUrl + project.projectId + "/tasks");
   }  
+
+  getTasksByReporter(userId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(this.taskListByReporterUrl + userId + "/tasks");
+  }  
+
+  getTasksByAssignee(userId: number): Observable<Task[]> {
+    return this.http.get<Task[]>(this.taskListByAssigneeUrl + userId + "/tasks");
+  }
 
   /** GET Tasks Detail from the server */
   getTaskDetail(id: number): Observable<Task> {

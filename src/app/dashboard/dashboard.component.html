@@ -1,18 +1,13 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a href="#" class="navbar-brand">{{title}}</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <li class="nav-item">
-        <a href="/" class="nav-link margin-item" routerLink="">Home </a>
-      </li>
-      <div *ngIf="showAdminBoard">
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="showAdminBoard">
             <a class="nav-link" href="/users">USERS</a>
         </li>
-      </div>
         <li class="nav-item margin-item" *ngIf="showManagerBoard" >
             <a class="nav-link" href="/projects">PROJECTS</a>
         </li>
-        <li class="nav-item margin-item" *ngIf="showManagerBoard" >
+        <li class="nav-item margin-item" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard" >
             <a class="nav-link" href="/tasks">TASKS</a>
         </li>
     </ul>
