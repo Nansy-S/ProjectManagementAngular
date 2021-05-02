@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 
 import { Task } from '../entity/task';
 import { Account } from '../entity/account';
+import { DialogChangeTaskAssigneeData, DialogDataMsg, Responce } from '../entity/dialog-data';
 
 import { ChangeTaskAssigneeComponent } from '../change-task-assignee/change-task-assignee.component';
 import { WarningDialogComponent } from '../warning-dialog/warning-dialog.component';
 import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
-
 
 import { TokenStorageService } from '../service/token-storage.service'
 import { TaskService } from '../service/task.service';
@@ -27,12 +27,12 @@ export class TaskDetailComponent implements OnInit {
   newAssigneeId = 0;
 
   currentUserId = 0;
+  currentUserRole = "";
   assigneeRole = "";
   warnMsg = "";
 
   isAssigneTaskButton = false;
   isAssigneTask = false;
-  isSuccessAssigneTask = false;
 
   dataFromDialog!: DialogChangeTaskAssigneeData;
   warningDialogData!: DialogDataMsg;
@@ -50,8 +50,9 @@ export class TaskDetailComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.getTaskDetail();
     this.currentUserId = this.tokenStorage.getUser().id;
+    this.currentUserRole = this.tokenStorage.getUser().role;
+    this.getTaskDetail();
   }
 
   getTaskDetail(): void {
@@ -59,7 +60,7 @@ export class TaskDetailComponent implements OnInit {
     this.taskService.getTaskDetail(id)
       .subscribe((data:Task) => {
         this.task = data;
-      } );
+    });
   }
 
   assigneTask(task: Task) {
@@ -79,6 +80,11 @@ export class TaskDetailComponent implements OnInit {
     }
     if(task.currentStatus == "Ready for Test") {
       this.assigneeRole = "Tester";
+    }
+    if(task.currentStatus == "Tested") {
+      this.assigneeRole = "Tester";
+      isWarnDialog = true;
+      this.warnMsg = "Task in progress. Are you sure you want to change assignee?";
     }
     
     if(!isWarnDialog) {
@@ -118,16 +124,13 @@ export class TaskDetailComponent implements OnInit {
       }); 
   }
   
-
   saveAssignee() {
-    console.log(this.newAssigneeId);
     this.task.assignee = this.newAssigneeId;
     this.taskService.changeTaskAssignee(this.task)
       .subscribe(task => {
         this.task = task;
-        this.isSuccessAssigneTask = true;
       });
-      this.diaspaySuccessDialog("Assignee changed successfully!");
+    this.displaySuccessDialog("Assignee changed successfully!");
   }
 
   getUsersByRole() {
@@ -135,7 +138,7 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(assigneeList => this.assigneeList = assigneeList);
   }
 
-  diaspaySuccessDialog(msg: string) {
+  displaySuccessDialog(msg: string) {
     const dialogRef = this.dialog.open(SuccessDialogComponent, {
       panelClass: 'custom-dialog',
       data: { context: msg }
@@ -146,18 +149,4 @@ export class TaskDetailComponent implements OnInit {
       }
     });
   }
-}
-
-export interface DialogChangeTaskAssigneeData {
-  newAssigneeId: number;
-  assigneeList: Account[];
-}
-
-export interface DialogDataMsg {
-  contect: string;
-}
-
-export interface Responce {
-  newAssigneeId: number;
-  isChange: boolean;
 }

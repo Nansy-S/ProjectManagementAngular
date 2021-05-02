@@ -33,6 +33,7 @@ import { TaskDetailComponent } from './task-detail/task-detail.component';
 import { ChangeTaskAssigneeComponent } from './change-task-assignee/change-task-assignee.component';
 import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
+import { ChangeTaskStatusComponent } from './change-task-status/change-task-status.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { SuccessDialogComponent } from './success-dialog/success-dialog.componen
     ChangeTaskAssigneeComponent,
     WarningDialogComponent,
     SuccessDialogComponent,
+    ChangeTaskStatusComponent,
 
   ],
   imports: [

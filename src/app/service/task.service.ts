@@ -20,6 +20,7 @@ export class TaskService {
   private taskDetailUrl = 'http://localhost:8080/api/tasks/';
   private addTaskUrl = 'http://localhost:8080/api/tasks/add';
   private changeTaskAssigneeUrl = 'http://localhost:8080/api/tasks/change/assignee';
+  private changeTaskStatusUrl = 'http://localhost:8080/api/tasks/change/status';
 
   tasks: Task[] = [];
 
@@ -47,6 +48,10 @@ export class TaskService {
 
   changeTaskAssignee(task: Task): Observable<any> {
     return this.http.post(this.changeTaskAssigneeUrl, task);
+  }
+
+  changeTaskStatus(task: Task): Observable<any> {
+    return this.http.post(this.changeTaskStatusUrl, task);
   }
 
   create(task: Task): Observable<any> {
