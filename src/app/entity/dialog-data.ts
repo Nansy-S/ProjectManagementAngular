@@ -1,7 +1,9 @@
+import { User } from '../entity/user';
 
 export interface DialogChangeTaskAssigneeData {
     newAssigneeId: number;
-    assigneeList: Account[];
+    role: string;
+    assigneeList: User[];
   }
   
   export interface DialogDataMsg {

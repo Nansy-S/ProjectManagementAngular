@@ -27,8 +27,4 @@ export class AccountService {
     return this.http.get<Account[]>(this.userListUrl);
   }
 
-  getUsersByRole(role: string): Observable<Account[]> {
-    return this.http.get<Account[]>(this.userByRoleUrl + role);
-  }
-
 }

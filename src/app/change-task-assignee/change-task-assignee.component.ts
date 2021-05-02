@@ -3,17 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatFormFieldControl } from '@angular/material/form-field';
 
-import { Account } from '../entity/account';
-
-export interface DialogChangeTaskAssigneeData {
-  newAssigneeId: number;
-  assigneeList: Account[];
-}
-
-export interface Responce {
-  newAssigneeId: number;
-  isChange: boolean;
-}
+import { DialogChangeTaskAssigneeData, Responce } from '../entity/dialog-data';
 
 @Component({
   selector: 'app-change-task-assignee',

@@ -18,7 +18,7 @@
             <p><span>Phone: </span>{{task.assigneeInfo.phone}}</p>
 
         <button class="btn btn-dark" (click)="assigneTask(task)">Change Assigne</button>
+    <app-change-task-status [task]="task"></app-change-task-status>
     </div>  
 
-    <app-change-task-status [task]="task"></app-change-task-status>
 </div>

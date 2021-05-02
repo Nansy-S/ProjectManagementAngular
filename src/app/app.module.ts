@@ -22,6 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldControl } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
+
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -69,7 +71,8 @@ import { ChangeTaskStatusComponent } from './change-task-status/change-task-stat
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    
+    MatNativeDateModule
+
   ],
   exports: [
     MatInputModule

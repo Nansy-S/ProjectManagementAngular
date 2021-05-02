@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Task } from '../entity/task';
-import { Account } from '../entity/account';
+import { User } from '../entity/user';
 import { DialogChangeTaskAssigneeData, DialogDataMsg, Responce } from '../entity/dialog-data';
 
 import { ChangeTaskAssigneeComponent } from '../change-task-assignee/change-task-assignee.component';
@@ -12,7 +12,7 @@ import { SuccessDialogComponent } from '../success-dialog/success-dialog.compone
 
 import { TokenStorageService } from '../service/token-storage.service'
 import { TaskService } from '../service/task.service';
-import { AccountService } from '../service/account.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-task-detail',
@@ -37,7 +37,7 @@ export class TaskDetailComponent implements OnInit {
   dataFromDialog!: DialogChangeTaskAssigneeData;
   warningDialogData!: DialogDataMsg;
 
-  assigneeList: Account[] = [];
+  assigneeList: User[] = [];
   responce = <Responce>{
     newAssigneeId: 0,
     isChange: true
@@ -46,7 +46,7 @@ export class TaskDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private tokenStorage: TokenStorageService,
     private taskService: TaskService,
-    private accountService: AccountService,
+    private userService: UserService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -98,24 +98,27 @@ export class TaskDetailComponent implements OnInit {
       dialogRefWarn.afterClosed().subscribe(result => {
         if(result) {
           this.changeAssignee();
+          if(task.currentStatus == "Resolved") {
+            task.currentStatus = "Ready for Test";
+            this.taskService.changeTaskStatus(task);
+          }
         }
       });
     }
   }
 
   changeAssignee() {
-    this.accountService.getUsersByRole(this.assigneeRole)
+    this.userService.getUsersByRole(this.assigneeRole)
         .subscribe(assigneeList => {
           this.assigneeList = assigneeList;
 
           const dialogRef = this.dialog.open(ChangeTaskAssigneeComponent, {
-            panelClass: 'custom-dialog',
-            data: {newAssigneeId: 0, assigneeList: this.assigneeList}
+            panelClass: 'custom-dialog-change-assignee',
+            data: {newAssigneeId: 0, role: this.assigneeRole, assigneeList: this.assigneeList}
           });
 
           dialogRef.afterClosed().subscribe(result => {
             this.responce = result;
-            console.log(this.responce.isChange);
             if(this.responce.isChange) {
             this.newAssigneeId = this.responce.newAssigneeId;
               this.saveAssignee();
@@ -134,7 +137,7 @@ export class TaskDetailComponent implements OnInit {
   }
 
   getUsersByRole() {
-    this.accountService.getUsersByRole(this.assigneeRole)
+    this.userService.getUsersByRole(this.assigneeRole)
       .subscribe(assigneeList => this.assigneeList = assigneeList);
   }
 

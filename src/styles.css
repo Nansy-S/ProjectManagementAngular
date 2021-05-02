@@ -15,6 +15,21 @@ body { margin: 0; font-family: 'Verdana'; font-size: 20px; font-style: normal;}
     width: 350px;
 }
 
+.custom-dialog-change-assignee {
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 0.6em;
+  font-family: 'Verdana';
+  width: 550px;
+}
+
+.custom-dialog-add-task {
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 0.6em;
+  font-family: 'Verdana';
+  width: 420px;
+  height: 630px;
+}
+
   .btn {
     min-width: 130px;
     position: relative;

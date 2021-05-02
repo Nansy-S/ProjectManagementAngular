@@ -37,11 +37,10 @@ export class ChangeTaskStatusComponent implements OnInit {
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.displayButtonChangeStatus();
     this.currentUserId = this.tokenStorage.getUser().id;
     this.currentUserRole = this.tokenStorage.getUser().role;
+    this.displayButtonChangeStatus();
   }
-
 
   displayButtonChangeStatus() {
     if(this.currentUserRole == "Developer" &&
@@ -61,6 +60,9 @@ export class ChangeTaskStatusComponent implements OnInit {
       this.isReopenTask = true;
     }
     if(this.currentUserRole == "Tester" && this.task.currentStatus == "Ready for Test") {
+      this.isCloseTask = true;
+    }
+    if(this.currentUserRole == "Project manager") {
       this.isCloseTask = true;
     }
   }
@@ -92,7 +94,24 @@ export class ChangeTaskStatusComponent implements OnInit {
 
   closeTask() {
     this.newTaskStatus = "Closed";
-    this.saveTaskStatus();
+    let msg = "Are you sure you close task?";
+    if(this.task.currentStatus != "Open") {
+      msg = "Task in progress. " + msg;
+    } 
+    if(this.currentUserRole == "Project manager") {
+      const dialogRefWarn = this.dialog.open(WarningDialogComponent, {
+        panelClass: 'custom-dialog',
+        data: { context: msg }
+      });
+
+      dialogRefWarn.afterClosed().subscribe(result => {
+        if(result) {
+          this.saveTaskStatus();
+        }
+      });
+    } else {
+      this.saveTaskStatus();
+    }
   }
 
   saveTaskStatus() {

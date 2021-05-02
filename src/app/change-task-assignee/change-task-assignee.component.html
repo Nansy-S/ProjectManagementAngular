@@ -1,20 +1,19 @@
 <!-- Modal -->
 <div class="dialog">
     <h1 mat-dialog-title>Change Assigne</h1>
-    <div mat-dialog-content>
-
+    <mat-dialog-content>
         <mat-form-field appearance="fill" floatLabel="never" color="primary" class="form-select select-assignee">
-        
-            <mat-label>Choose Assigne</mat-label>
+            <mat-label>Choose {{data.role}}</mat-label>
             <mat-select [(ngModel)]="responce.newAssigneeId" name="dialog-select">
-                <mat-option *ngFor="let assignee of data.assigneeList" [value]="assignee.accountId">
-                    {{assignee.name}} {{assignee.patronymic}} {{assignee.surname}} 
+                <mat-option *ngFor="let assignee of data.assigneeList" [value]="assignee.userId">
+                    {{assignee.accountInfo.name}} {{assignee.accountInfo.patronymic}} 
+                    {{assignee.accountInfo.surname}} | {{assignee.position}}
                 </mat-option>
             </mat-select>
         </mat-form-field>
-    </div>
-    <div mat-dialog-actions>
+    </mat-dialog-content>
+    <mat-dialog-actions class="btn-actions">
         <button class="cansel-btn" (click)="onNoClick()">CANSEL</button>
         <button class="save-btn" [mat-dialog-close] ="responce" cdkFocusInitial>SAVE</button>
-    </div>
+    </mat-dialog-actions>
 </div>

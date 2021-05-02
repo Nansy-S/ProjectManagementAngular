@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
 import { Project } from '../entity/project';
 import { Task } from '../entity/task';
+import { AddTaskComponent } from '../add-task/add-task.component';
 
 import { TokenStorageService } from '../service/token-storage.service'
 import { TaskService } from '../service/task.service';
@@ -25,7 +27,8 @@ export class TaskComponent implements OnInit {
     task!: Task;
     selectedTask!: Task;
   
-    constructor(private route: Router,
+    constructor(public dialog: MatDialog, 
+        private route: Router,
         private tokenStorage: TokenStorageService,
         private http: HttpClient,
         private taskService: TaskService) { }
@@ -63,6 +66,9 @@ export class TaskComponent implements OnInit {
     }
 
     addNewTask() {
-      this.route.navigate(['projects/' + this.project.projectId + '/tasks/add']);
+      this.dialog.open(AddTaskComponent, {
+        panelClass: 'custom-dialog-add-task',
+        data: this.project
+      });
     } 
   }
