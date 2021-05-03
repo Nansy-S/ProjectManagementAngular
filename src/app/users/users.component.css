@@ -1,8 +1,81 @@
-table {
-  width: 60%;
-  margin-left: 10%;
+
+.display-users {
+  margin: 2% 5%;
+  width: 85%;
+  font-family: 'Verdana'; 
+  font-size: 20px; 
+  font-style: normal;
 }
-  
-  input {
-    padding: .5rem;
-  }
+
+table {
+  width: 100%;
+}
+
+.matInput {
+  font-family: 'Verdana'; 
+  font-size: 18px; 
+  font-style: normal;
+}
+
+.search {
+  margin-left: 60%;
+  margin-top: 30px;
+  margin-bottom: -10px;
+}
+
+.search .mat-icon {
+  font-size: 30px;
+}
+
+.mat-form-field {
+  font-size: 17px;
+  width: 60%;
+  text-align: right;
+  padding-right: 10px;
+}
+
+.mat-row:hover {
+  background: rgba(78, 78, 78, 0.2);
+}
+
+.mat-header-cell {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.mat-table {
+  font-family: 'Verdana'; 
+  font-size: 18px; 
+}
+
+.mat-column-full-name {
+  max-width: 50%;
+}
+
+.mat-column-email {
+  max-width: 40%;
+}
+
+.btn-transparent {
+  min-width: 150px;
+  height: 50px;
+  margin: 60px 10px -100px 165px;
+  border: 2px solid #696969;
+  border-radius: 0.4em;
+  color: #696969;
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.btn-transparent:hover {
+  color: #fff;
+  box-shadow: 0 0 40px 40px #6b6b6b inset;
+}
+
+.not-found {
+  margin: 50px 0px 0px 170px;
+  font-family: 'Verdana'; 
+  font-size: 20px; 
+  font-weight: bold;
+  color: #a1a1a1;
+}

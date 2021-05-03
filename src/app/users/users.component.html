@@ -1,21 +1,36 @@
-<h2>users</h2>
 
-<table class="table table-hover">
-    <thead><tr class="table-primary">
-        <td>№</td>
-        <td>FULL NAME</td>
-        <td>EMAIL</td>
-    </tr></thead>
-    <tbody><tr *ngFor="let account of accounts" class="table-secondary" 
-        [class.selected]="account === selectedUser"
-        (click)="onSelect(account)">
-        <td> {{account.accountId}}</td>
-        <td> {{account.name}} {{account.surname}} {{account.patronymic}}</td>
-        <td> {{account.email}}</td>
-    </tr></tbody>
-</table>
-
-<div *ngIf="selectedUser">
-    <h2>User Details</h2>
-    <p><span>FULL NAME: </span>{{selectedUser.name}} {{selectedUser.surname}} {{selectedUser.patronymic}}</p>
+<div class="search">
+    <mat-form-field>
+        <mat-label>SEARCH</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
+    </mat-form-field>
+    <mat-icon>search</mat-icon>
 </div>
+
+<div *ngIf="accounts.length > 0" class="display-users">
+    <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
+        <!-- FULL NAME Column -->
+        <ng-container matColumnDef="full-name">
+            <mat-header-cell *matHeaderCellDef> FULL NAME </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} 
+                {{element.surname}} {{element.patronymic}} </mat-cell>
+        <!-- EMAIL Column -->
+        </ng-container> <ng-container matColumnDef="email">
+            <mat-header-cell *matHeaderCellDef> EMAIL </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        </ng-container> 
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay" class="header-table-dark"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="goToUserDetail(row)" class="row-hover"></mat-row>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </mat-table>
+</div>
+<div *ngIf="accounts.length == 0">
+    <h2 class="not-found"> Users not found.</h2>
+</div>
+
+  

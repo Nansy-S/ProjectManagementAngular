@@ -11,7 +11,7 @@
 
 <div *ngIf="tasks.length > 0" class="display-tasks">
     <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
-        
+        <!-- CODE Column -->
         <ng-container matColumnDef="code">
             <mat-header-cell *matHeaderCellDef> CODE </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.taskCode}} </mat-cell>

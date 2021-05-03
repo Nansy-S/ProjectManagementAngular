@@ -1,23 +1,37 @@
 <div class="task-detail">
     <div *ngIf="task">
-        <h2>Task Details</h2>
-        <p><span>Code: </span>{{task.taskCode}}</p>
-        <p><span>Priority: </span>{{task.priority}}</p>
-        <p><span>Status: </span>{{task.currentStatus}}</p>
-        <p><span>Due Date: </span>{{task.dueDate | date:'medium'}}</p>
-        <p><span>Estimation Time: </span>{{task.estimationTime}}</p>
-        <p><span>Description: </span>{{task.description}}</p>
-        <br>
-        <p><span>Assignee: </span></p>
-        <p><span>Full name: </span>
-            {{task.assigneeInfo.accountInfo.name}} 
-            {{task.assigneeInfo.accountInfo.patronymic}}
-            {{task.assigneeInfo.accountInfo.surname}} </p>
-            <p><span>Email: </span>{{task.assigneeInfo.accountInfo.email}}</p>
-            <p><span>Position: </span>{{task.assigneeInfo.position}}</p>
-            <p><span>Phone: </span>{{task.assigneeInfo.phone}}</p>
-
-        <button class="btn btn-dark" (click)="assigneTask(task)">Change Assigne</button>
-    <app-change-task-status [task]="task"></app-change-task-status>
+        <table class="table-details" >
+            <tr>
+                <td class="details">
+                    <p>Code: <span>{{task.taskCode}}</span></p>
+                    <p>Priority: <span>{{task.priority}}</span></p>
+                    <p>Status: <span>{{task.currentStatus}}</span></p>
+                    <p>Due Date: <span>{{task.dueDate | date:'medium'}}</span></p>
+                    <p>Estimation Time: <span>{{task.estimationTime}}</span></p>
+                </td>
+                <td>
+                    <p><span>Assignee: </span></p>
+                    <p>Full name: 
+                        <span>{{task.assigneeInfo.accountInfo.name}} 
+                        {{task.assigneeInfo.accountInfo.patronymic}}
+                        {{task.assigneeInfo.accountInfo.surname}}</span> </p>
+                    <p>Email: <span>{{task.assigneeInfo.accountInfo.email}}</span></p>
+                    <p>Position: <span>{{task.assigneeInfo.position}}</span></p>
+                    <p>Phone:<span>{{task.assigneeInfo.phone}}</span></p>
+                </td>
+            </tr>      
+            <tr>
+                <td colspan="2">
+                    <p class="cell-description">Description: <span>{{task.description}}</span></p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><div class="horizontal-line"></div></td>
+            </tr>   
+            <tr class="row-btn">
+                <td class="cell-btn-assigne"> <button class="btn btn-dark" (click)="assigneTask(task)">Change Assigne</button> </td>
+                <td> <app-change-task-status [task]="task"></app-change-task-status> </td>
+            </tr>
+        </table>
     </div>  
 </div>

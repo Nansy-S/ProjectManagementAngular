@@ -10,7 +10,7 @@
         <li class="nav-item margin-item" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard" >
             <a class="nav-link" href="/tasks">TASKS</a>
         </li>
-        <li class="nav-item margin-item link-profile">
+        <li class="nav-item margin-item link-profile" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard">
             <a href={{userDetailLink}} class="nav-link">Profile</a>
         </li>
     </ul>

@@ -37,9 +37,11 @@ export class DashboardComponent implements OnInit {
       }
       if (this.userRole === 'Developer') {
         this.showDeveloperBoard = true;
+        this.router.navigate(['/tasks']);
       }
       if (this.userRole === 'Tester') {
         this.showTesterBoard = true;
+        this.router.navigate(['/tasks']);
       }
     }
   }

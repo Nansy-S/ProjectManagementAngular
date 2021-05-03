@@ -25,6 +25,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatTableModule } from '@angular/material/table';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -79,6 +80,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
     MatIconModule,
     MatNativeDateModule,
     MatTableModule,
+    MatGridListModule,
   ],
   exports: [
     MatInputModule,

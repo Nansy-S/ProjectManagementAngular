@@ -1,21 +1,46 @@
 <div class="projects">
-<h2>Projects by Project manager </h2>
+    <button class="btn btn-transparent" (click)="addNewProject()">New Project</button>
+    <div class="search">
+        <mat-form-field>
+            <mat-label>SEARCH</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
+        </mat-form-field>
+        <mat-icon>search</mat-icon>
+    </div>
 
-<button class="btn btn-dark bn-new-project" (click)="addNewProject()">New Project</button>
+    <div *ngIf="projects.length > 0" class="display-projects">
+        <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
+            <!-- CODE Column -->
+            <ng-container matColumnDef="code">
+                <mat-header-cell *matHeaderCellDef> CODE </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.projectCode}} </mat-cell>
+            </ng-container>
+            <!-- DUE DATE Column -->
+            <ng-container matColumnDef="dueDate">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> DUE DATE </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.dueDate | date:'medium'}} </mat-cell>
+            </ng-container>
+            <!-- STATUS Column -->
+            <ng-container matColumnDef="currentStatus">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> STATUS </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.currentStatus}} </mat-cell>
+            </ng-container>
+            <!-- SUMMARY Column -->
+            <ng-container matColumnDef="summary">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> SUMMARY </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.summary}} </mat-cell>
+            </ng-container>
 
-<table class="table table-hover">
-    <thead><tr class="header-table-dark">
-        <td>CODE</td>
-        <td>SUMMARY</td>
-        <td>DUE DATE</td>
-        <td>STATUS</td>
-    </tr></thead>
-    <tbody><tr *ngFor="let project of projects" 
-      (click)="goToProjectDetail(project)"
-      class="table-secondary">
-        <td> {{project.projectCode}} </td>
-        <td> {{project.summary}} </td>
-        <td> {{project.dueDate | date:'medium'}} </td>
-        <td> {{project.currentStatus}} </td>
-    </tr></tbody>
-</table>
+            <mat-header-row *matHeaderRowDef="columnsToDisplay" class="header-table-dark"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="goToProjectDetail(row)" class="row-hover"></mat-row>
+    
+            <!-- Row shown when there is no matching data. -->
+            <tr class="mat-row" *matNoDataRow>
+                <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+            </tr>
+        </mat-table>
+    </div>
+    <div *ngIf="projects.length == 0">
+        <h2 class="not-found"> Tasks not found.</h2>
+    </div>
+</div>
