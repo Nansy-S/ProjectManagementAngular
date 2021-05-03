@@ -1,6 +1,8 @@
+
+
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -21,8 +23,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatTableModule } from '@angular/material/table';
 
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,6 +38,7 @@ import { ChangeTaskAssigneeComponent } from './change-task-assignee/change-task-
 import { WarningDialogComponent } from './warning-dialog/warning-dialog.component';
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 import { ChangeTaskStatusComponent } from './change-task-status/change-task-status.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -53,14 +56,15 @@ import { ChangeTaskStatusComponent } from './change-task-status/change-task-stat
     WarningDialogComponent,
     SuccessDialogComponent,
     ChangeTaskStatusComponent,
-
+    UserDetailComponent,
   ],
   imports: [
     CommonModule,
     BrowserModule,
-    FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
 
     BrowserAnimationsModule,
     MatSliderModule,
@@ -71,11 +75,12 @@ import { ChangeTaskStatusComponent } from './change-task-status/change-task-stat
     MatButtonModule,
     MatDialogModule,
     MatIconModule,
-    MatNativeDateModule
-
+    MatNativeDateModule,
+    MatTableModule,
   ],
   exports: [
-    MatInputModule
+    MatInputModule,
+    FormsModule
   ],
   entryComponents: [
     MatDialogModule

@@ -1,32 +1,61 @@
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
+</mat-form-field>
+
 
 <div *ngIf="tasks.length > 0" class="display-tasks">
-<table class="table table-hover">
-    <thead><tr class="header-table-dark">
-        <td>CODE</td>
-        <td>PRIORITY</td>
-        <td>DUE DATE</td>
-        <td>ECTIMATION TIME</td>
-        <td>STATUS</td>
-        <td>ASSIGNEE</td>
-        <td>DESCRIPTION</td>
-    </tr></thead>
-    <tbody><tr *ngFor="let task of tasks" class="table-secondary" 
-        (click)="goToTaskDetail(task)">
-        <td> {{task.taskCode}} </td>
-        <td> {{task.priority}} </td>
-        <td> {{task.dueDate}} </td>
-        <td> {{task.estimationTime}} </td>
-        <td> {{task.currentStatus}} </td>
-        <td> {{task.assigneeInfo.accountInfo.name}} 
-             {{task.assigneeInfo.accountInfo.patronymic}}
-             {{task.assigneeInfo.accountInfo.surname}} 
-        </td>
-        <td> {{task.description}} </td>
-    </tr></tbody>
-</table>
+    <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
+        
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.taskId}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+            <mat-header-cell *matHeaderCellDef> CODE </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.taskCode}} </mat-cell>
+        </ng-container>
+        <!-- PRIORITY Column -->
+        <ng-container matColumnDef="priority">
+            <mat-header-cell *matHeaderCellDef> PRIORITY </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.priority}} </mat-cell>
+        </ng-container>
+        <!-- DUE DATE Column -->
+        <ng-container matColumnDef="dueDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> DUE DATE </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dueDate | date:'medium'}} </mat-cell>
+        </ng-container>
+        <!-- ECTIMATION TIME Column -->
+        <ng-container matColumnDef="estimationTime" class = "estimation-time-cell">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ECTIMATION TIME </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.estimationTime}} </mat-cell>
+        </ng-container>
+        <!-- STATUS Column -->
+        <ng-container matColumnDef="currentStatus">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> STATUS </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.currentStatus}} </mat-cell>
+        </ng-container>
+        <!-- ASSIGNEE Column -->
+        <ng-container matColumnDef="assignee">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ASSIGNEE </mat-header-cell>
+            <mat-cell *matCellDef="let element">  
+                {{element.assigneeInfo.accountInfo.name}} 
+                {{element.assigneeInfo.accountInfo.patronymic}}
+                {{element.assigneeInfo.accountInfo.surname}}  </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="columnsToDisplay" class="header-table-dark"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="goToTaskDetail(row)" class="row-hover"></mat-row>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+        </tr>
+    </mat-table>
 </div>
 <div *ngIf="tasks.length == 0">
-  <h2> Tasks not found.</h2>
+    <h2> Tasks not found.</h2>
 </div>
 
 <button class="btn btn-success" (click)="addNewTask()">New Task</button>

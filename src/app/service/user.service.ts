@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { User } from '../entity/user';
 
@@ -12,6 +13,7 @@ export class UserService {
 
   private usersUrl = 'api/users';
   private userByRoleUrl = 'http://localhost:8080/api/users/role/';
+  private userDetailUrl = 'http://localhost:8080/api/users/';
 
   users: User[] = [];
 
@@ -25,5 +27,12 @@ export class UserService {
     return this.http.get<User[]>(this.userByRoleUrl + role);
   }
  
-
+  /** GET User Detail from the server */
+  getUserDetail(id: number): Observable<User> {
+    return this.http.get<User>(this.userDetailUrl + id).pipe(
+      map((user: User) => {
+        console.log(user);
+        return user;
+      }));
+  }
 }

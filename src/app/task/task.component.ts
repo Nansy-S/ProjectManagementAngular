@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { MatTableDataSource } from '@angular/material/table';
 
 import { Project } from '../entity/project';
 import { Task } from '../entity/task';
@@ -10,14 +11,14 @@ import { AddTaskComponent } from '../add-task/add-task.component';
 import { TokenStorageService } from '../service/token-storage.service'
 import { TaskService } from '../service/task.service';
 
+
 @Component({
     selector: 'app-task',
     templateUrl: './task.component.html',
-    styleUrls: ['./task.component.css']
-  })
-
-
+    styleUrls: ['./task.component.css'],
+})
 export class TaskComponent implements OnInit {
+
 
     @Input() project!: Project;
 
@@ -26,7 +27,12 @@ export class TaskComponent implements OnInit {
     tasks: Task[] = [];
     task!: Task;
     selectedTask!: Task;
-  
+
+    searchValue!: string;
+
+    columnsToDisplay = ['id', 'code', 'priority', 'dueDate', 'estimationTime', 'currentStatus', 'assignee'];
+    dataSource!: MatTableDataSource<Task>;
+
     constructor(public dialog: MatDialog, 
         private route: Router,
         private tokenStorage: TokenStorageService,
@@ -34,7 +40,6 @@ export class TaskComponent implements OnInit {
         private taskService: TaskService) { }
   
     ngOnInit(): void {
-      console.log(this.project);
       if(this.project == undefined) {
         this.currentUserId = this.tokenStorage.getUser().id;
         if(this.tokenStorage.getUser().role == "Project manager") {
@@ -48,17 +53,26 @@ export class TaskComponent implements OnInit {
         this.getTasksByProject();
       }
     }
-  
+   
     getTasksByProject(): void {
-      this.taskService.getTasksByProject(this.project).subscribe(tasks => this.tasks = tasks);
+      this.taskService.getTasksByProject(this.project).subscribe(tasks => {
+        this.tasks = tasks;
+        this.dataSource = new MatTableDataSource(this.tasks);
+      });
     }
 
     getTasksByReporter(): void {
-      this.taskService.getTasksByReporter(this.currentUserId).subscribe(tasks => this.tasks = tasks);
+      this.taskService.getTasksByReporter(this.currentUserId).subscribe(tasks => {
+        this.tasks = tasks;
+        this.dataSource = new MatTableDataSource(this.tasks);
+      });
     }
 
     getTasksByAssignee(): void {
-      this.taskService.getTasksByAssignee(this.currentUserId).subscribe(tasks => this.tasks = tasks);
+      this.taskService.getTasksByAssignee(this.currentUserId).subscribe(tasks => {
+        this.tasks = tasks;
+        this.dataSource = new MatTableDataSource(this.tasks);
+      });
     }
 
     goToTaskDetail(task: Task) {
@@ -71,4 +85,10 @@ export class TaskComponent implements OnInit {
         data: this.project
       });
     } 
+
+    
+    applyFilter(event: Event) {
+      const filterValue = (event.target as HTMLInputElement).value;
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+    }
   }

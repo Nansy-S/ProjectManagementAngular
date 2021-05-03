@@ -5,9 +5,9 @@
     <h2 *ngIf="project != undefined" >Project code: {{ project.projectCode }} </h2>
         <mat-form-field *ngIf="project == undefined" appearance="fill" floatLabel="never" color="primary">
             <mat-label>Choose project</mat-label>
-            <mat-select [(ngModel)]="newTask.priority">
-                <mat-option *ngFor="let priority of priorityList" [value]="priority">
-                    {{priority}}
+            <mat-select [(ngModel)]="newTask.projectId">
+                <mat-option *ngFor="let project of projectList" [value]="project.projectId">
+                    {{project.projectCode}}
                 </mat-option>
             </mat-select>
         </mat-form-field>

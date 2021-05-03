@@ -76,7 +76,7 @@ export class TaskDetailComponent implements OnInit {
     if(task.currentStatus == "In progress") {
       this.assigneeRole = "Developer";
       isWarnDialog = true;
-      this.warnMsg = "Task in progress. Are you sure you want to change assignee?";
+      this.warnMsg = "Task in progress. Are you sure that you want to change assignee?";
     }
     if(task.currentStatus == "Ready for Test") {
       this.assigneeRole = "Tester";
@@ -84,7 +84,7 @@ export class TaskDetailComponent implements OnInit {
     if(task.currentStatus == "Tested") {
       this.assigneeRole = "Tester";
       isWarnDialog = true;
-      this.warnMsg = "Task in progress. Are you sure you want to change assignee?";
+      this.warnMsg = "Task in progress. Are you sure that you want to change assignee?";
     }
     
     if(!isWarnDialog) {

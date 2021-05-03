@@ -58,8 +58,6 @@ export class ChangeTaskStatusComponent implements OnInit {
     }
     if(this.currentUserRole == "Tester" && this.task.currentStatus == "Tested") {
       this.isReopenTask = true;
-    }
-    if(this.currentUserRole == "Tester" && this.task.currentStatus == "Ready for Test") {
       this.isCloseTask = true;
     }
     if(this.currentUserRole == "Project manager") {

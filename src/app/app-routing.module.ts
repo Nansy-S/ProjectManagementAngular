@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { UsersComponent } from './users/users.component';
+import { UserDetailComponent } from './user-detail/user-detail.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectDetailComponent } from './project-detail/project-detail.component';
 
@@ -15,7 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 const routes: Routes = [ 
   { path: 'login', component: LoginComponent },
 
-  { path: '', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent },
 
   { path: 'projects', component: ProjectComponent },
   { path: 'projects/detail/:id', component: ProjectDetailComponent },
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'tasks/detail/:id', component: TaskDetailComponent },
 
   { path: 'users', component: UsersComponent },
-
+  { path: 'users/detail/:id', component: UserDetailComponent },
+  
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
 

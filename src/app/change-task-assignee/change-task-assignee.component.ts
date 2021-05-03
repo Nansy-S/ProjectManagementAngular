@@ -1,6 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatDialogModule, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { MatFormFieldControl } from '@angular/material/form-field';
 
 import { DialogChangeTaskAssigneeData, Responce } from '../entity/dialog-data';

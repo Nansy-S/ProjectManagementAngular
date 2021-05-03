@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 
 import { Task } from '../entity/task';
@@ -21,8 +20,8 @@ export class TaskService {
   private taskListByAssigneeUrl = 'http://localhost:8080/api/assignee/';
   private taskDetailUrl = 'http://localhost:8080/api/tasks/';
   private addTaskUrl = 'http://localhost:8080/api/tasks/add';
-  private changeTaskAssigneeUrl = 'http://localhost:8080/api/tasks/change/assignee';
-  private changeTaskStatusUrl = 'http://localhost:8080/api/tasks/change/status';
+  private changeTaskUrl = 'http://localhost:8080/api/tasks/';
+  private priorityListUrl = 'http://localhost:8080/api/tasks/priorities';
 
   tasks: Task[] = [];
 
@@ -51,17 +50,20 @@ export class TaskService {
   getTaskDetail(id: number): Observable<Task> {
     return this.http.get<Task>(this.taskDetailUrl + id).pipe(
       map((task: Task) => {
-        console.log(task);
         return task;
       }));
   }
 
+  getPriorityList(): Observable<any> {
+    return this.http.get<string[]>(this.priorityListUrl);
+  }
+
   changeTaskAssignee(task: Task): Observable<any> {
-    return this.http.post(this.changeTaskAssigneeUrl, task);
+    return this.http.post(this.changeTaskUrl + task.taskId + "/change/assignee", task.assignee);
   }
 
   changeTaskStatus(task: Task): Observable<any> {
-    return this.http.post(this.changeTaskStatusUrl, task);
+    return this.http.post(this.changeTaskUrl + task.taskId + "/change/status", task.currentStatus);
   }
 
   create(task: Task): Observable<any> {

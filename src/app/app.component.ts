@@ -24,22 +24,17 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-      console.log(this.isLoggedIn);
-
     if (this.isLoggedIn) {
-
-      const user = this.tokenStorageService.getUser();
-      this.role = user.roles;
+      this.role = this.tokenStorageService.getUser().roles;
       if (this.role === 'Administrator') {
-        //this.router.navigate(['/admin']);
+        this.router.navigate(['/users']);
       }
-  
       if (this.role === 'Project manager') {
         this.router.navigate(['/projects']);
       }
-      //this.router.navigate(['/']);
-
+      if (this.role === 'Developer' || this.role === 'Tester') {
+        this.router.navigate(['/tasks']);
+      }
     } else {
       this.router.navigate(['login']);
     }

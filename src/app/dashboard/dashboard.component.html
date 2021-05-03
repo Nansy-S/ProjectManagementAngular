@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">{{title}}</a>
+    <a href="" class="navbar-brand">{{title}}</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item" *ngIf="showAdminBoard">
             <a class="nav-link" href="/users">USERS</a>
@@ -9,6 +9,12 @@
         </li>
         <li class="nav-item margin-item" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard" >
             <a class="nav-link" href="/tasks">TASKS</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ml-auto link-profile" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard">
+        <li class="nav-item">
+            <a href={{userDetailLink}} class="nav-link">Profile</a>
         </li>
     </ul>
 

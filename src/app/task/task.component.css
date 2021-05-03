@@ -3,3 +3,21 @@
   margin: 2% 5%;
   width: 85%;
 }
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  width: 100%;
+}
+
+.mat-row:hover {
+  background: rgba(78, 78, 78, 0.2);
+}
+
+.estimation-time-cell {
+  width: 15%;
+  text-align: center;
+}

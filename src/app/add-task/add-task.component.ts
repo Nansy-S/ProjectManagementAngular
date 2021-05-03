@@ -11,6 +11,7 @@ import { User } from '../entity/user';
 
 import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
 import { TaskService } from '../service/task.service';
+import { ProjectService } from '../service/project.service';
 
 @Component({
   selector: 'app-add-task',
@@ -27,34 +28,41 @@ export class AddTaskComponent implements OnInit {
 
   assignee!: User;
   newTask: Task = {
+    taskCode: '',
     priority: '',
+    dueDate: new Date(),
     estimationTime: 0,
+    currentStatus: '',
     description: '',
     assigneeInfo: this.assignee
   };
 
-  priorityList = [
-    "Blocker",
-    "Critical",
-    "Major",
-    "Normal",
-    "Minor"
+  priorityList: string[] = [
+    
   ];
+
+  projectList: Project[] = [];
 
   constructor( private route: ActivatedRoute,
         private http: HttpClient,
         private taskService: TaskService,
+        private ProjectService: ProjectService,
         public dialog: MatDialog,
       
         public dialogRef: MatDialogRef<AddTaskComponent>,
         @Inject(MAT_DIALOG_DATA) public project: Project) { }
 
   ngOnInit(): void {
-
+      this.getPriorityList();
+      if(this.project === undefined) {
+        this.ProjectService.getProjects().subscribe(projectList => this.projectList = projectList);
+      }
   }
 
   onAddClick(): void {
-    this.newTask.projectId = this.project.projectId;
+    if(this.project != undefined) {
+      this.newTask.projectId = this.project.projectId;
+    }
     this.taskService.create(this.newTask)
       .subscribe(task => {
         this.isAddedTask = true;
@@ -77,5 +85,9 @@ export class AddTaskComponent implements OnInit {
         window.location.reload();
       }
     });
+  }
+
+  getPriorityList() {
+    this.taskService.getPriorityList().subscribe(priorityList => this.priorityList = priorityList);
   }
 }
