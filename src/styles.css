@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; font-family: 'Verdana'; font-size: 20px; font-style: normal; }
-body { margin: 0; font-family: 'Verdana'; font-size: 20px; font-style: normal;}
+body { 
+  margin: 0; 
+  font-family: 'Verdana'; 
+  font-size: 20px; 
+  font-style: normal;
+  background: linear-gradient(white, rgb(241, 241, 241), rgba(114, 114, 114, 0.5));
+}
 
 .header-table-dark {
     background: rgba(78, 78, 78, 0.7);
@@ -28,6 +34,14 @@ body { margin: 0; font-family: 'Verdana'; font-size: 20px; font-style: normal;}
   font-family: 'Verdana';
   width: 420px;
   height: 640px;
+}
+
+.custom-dialog-add-project {
+  border: 1px solid rgb(73, 73, 73);
+  border-radius: 0.6em;
+  font-family: 'Verdana';
+  width: 420px;
+  height: 460px;
 }
 
   .btn {

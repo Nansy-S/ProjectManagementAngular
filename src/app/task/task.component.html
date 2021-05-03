@@ -1,17 +1,17 @@
-<mat-form-field>
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
-</mat-form-field>
 
+<button class="btn btn-transparent" (click)="addNewTask()">New Task</button>
+
+<div class="search">
+    <mat-form-field>
+        <mat-label>SEARCH</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
+    </mat-form-field>
+    <mat-icon>search</mat-icon>
+</div>
 
 <div *ngIf="tasks.length > 0" class="display-tasks">
     <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
         
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.taskId}} </mat-cell>
-        </ng-container>
-
         <ng-container matColumnDef="code">
             <mat-header-cell *matHeaderCellDef> CODE </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.taskCode}} </mat-cell>
@@ -29,7 +29,7 @@
         <!-- ECTIMATION TIME Column -->
         <ng-container matColumnDef="estimationTime" class = "estimation-time-cell">
             <mat-header-cell *matHeaderCellDef mat-sort-header> ECTIMATION TIME </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.estimationTime}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.estimationTime}} hr</mat-cell>
         </ng-container>
         <!-- STATUS Column -->
         <ng-container matColumnDef="currentStatus">
@@ -55,7 +55,5 @@
     </mat-table>
 </div>
 <div *ngIf="tasks.length == 0">
-    <h2> Tasks not found.</h2>
+    <h2 class="not-found"> Tasks not found.</h2>
 </div>
-
-<button class="btn btn-success" (click)="addNewTask()">New Task</button>

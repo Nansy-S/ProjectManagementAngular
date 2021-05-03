@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Project } from '../entity/project';
+import { AddProjectComponent } from '../add-project/add-project.component';
 
 import { ProjectService } from '../service/project.service';
 
@@ -18,21 +20,19 @@ export class ProjectComponent implements OnInit {
     project: Project = {
       projectCode: '',
       summary: '',
+      dueDate: new Date
     };
     selectedProject!: Project;
-    
-    addForm = false;
 
-    isAddedProject = false;
     isGoToProjectDetail = false;
   
-    constructor(private http: HttpClient,
+    constructor(public dialog: MatDialog, 
+        private http: HttpClient,
         private ProjectService: ProjectService,
         private router: Router) { }
   
     ngOnInit(): void {
       this.getProjects();
-  
     }
   
     getProjects(): void {
@@ -45,21 +45,8 @@ export class ProjectComponent implements OnInit {
     }
 
     addNewProject() {
-      this.addForm = true;
+      this.dialog.open(AddProjectComponent, {
+        panelClass: 'custom-dialog-add-project'
+      });
     }
-
-    add(): void {
-      const newProject = {
-        projectId: 0,
-        projectCode: this.project.projectCode,
-        summary: this.project.summary,
-        dueDate: this.project.dueDate,
-      };
-      this.ProjectService.create(newProject)
-        .subscribe(project => {
-          this.projects.push(project);
-          this.isAddedProject = true;
-        });
-    }
-
   }

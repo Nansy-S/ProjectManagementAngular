@@ -1,5 +1,3 @@
-
-
 <div class="main">
   <div class="col-md-6 col-sm-12">
      <div class="login-form">
@@ -10,9 +8,8 @@
         #f="ngForm"
         novalidate
       >
-      <h2>Authorization</h2>
+      <h2>Log In</h2>
       <div class="form-group">
-        <label>E-mail</label>
           <input type="text" class="form-control" name="email" id="inputEmail" placeholder="E-mail"
           [(ngModel)]="form.email"
             required
@@ -28,7 +25,6 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
           <input
             type="password"
             class="form-control"
@@ -51,7 +47,7 @@
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary btn-block">
+          <button class="btn btn-dark btn-block btn-login">
             Login
           </button>
         </div>
@@ -71,5 +67,3 @@
       </div>
     </div>
   </div>
-
-  

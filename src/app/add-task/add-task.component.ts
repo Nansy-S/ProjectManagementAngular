@@ -37,10 +37,7 @@ export class AddTaskComponent implements OnInit {
     assigneeInfo: this.assignee
   };
 
-  priorityList: string[] = [
-    
-  ];
-
+  priorityList: string[] = [];
   projectList: Project[] = [];
 
   constructor( private route: ActivatedRoute,
@@ -72,7 +69,6 @@ export class AddTaskComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-    window.location.reload();
   }
 
   displaySuccessDialog(msg: string) {

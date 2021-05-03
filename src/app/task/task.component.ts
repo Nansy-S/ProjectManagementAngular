@@ -19,7 +19,6 @@ import { TaskService } from '../service/task.service';
 })
 export class TaskComponent implements OnInit {
 
-
     @Input() project!: Project;
 
     currentUserId = 0;
@@ -28,9 +27,11 @@ export class TaskComponent implements OnInit {
     task!: Task;
     selectedTask!: Task;
 
+    isBtnAdd = false;
+
     searchValue!: string;
 
-    columnsToDisplay = ['id', 'code', 'priority', 'dueDate', 'estimationTime', 'currentStatus', 'assignee'];
+    columnsToDisplay = ['code', 'priority', 'dueDate', 'estimationTime', 'currentStatus', 'assignee'];
     dataSource!: MatTableDataSource<Task>;
 
     constructor(public dialog: MatDialog, 
@@ -41,6 +42,7 @@ export class TaskComponent implements OnInit {
   
     ngOnInit(): void {
       if(this.project == undefined) {
+        this.isBtnAdd = true;
         this.currentUserId = this.tokenStorage.getUser().id;
         if(this.tokenStorage.getUser().role == "Project manager") {
           this.getTasksByReporter();
@@ -50,6 +52,7 @@ export class TaskComponent implements OnInit {
           this.getTasksByAssignee();
         }
       } else { 
+        this.isBtnAdd = false;
         this.getTasksByProject();
       }
     }
@@ -85,7 +88,6 @@ export class TaskComponent implements OnInit {
         data: this.project
       });
     } 
-
     
     applyFilter(event: Event) {
       const filterValue = (event.target as HTMLInputElement).value;

@@ -39,6 +39,7 @@ import { WarningDialogComponent } from './warning-dialog/warning-dialog.componen
 import { SuccessDialogComponent } from './success-dialog/success-dialog.component';
 import { ChangeTaskStatusComponent } from './change-task-status/change-task-status.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
+import { AddProjectComponent } from './add-project/add-project.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     SuccessDialogComponent,
     ChangeTaskStatusComponent,
     UserDetailComponent,
+    AddProjectComponent,
   ],
   imports: [
     CommonModule,

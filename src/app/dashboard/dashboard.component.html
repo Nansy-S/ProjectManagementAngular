@@ -10,13 +10,11 @@
         <li class="nav-item margin-item" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard" >
             <a class="nav-link" href="/tasks">TASKS</a>
         </li>
-    </ul>
-
-    <ul class="navbar-nav ml-auto link-profile" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard">
-        <li class="nav-item">
+        <li class="nav-item margin-item link-profile">
             <a href={{userDetailLink}} class="nav-link">Profile</a>
         </li>
     </ul>
+
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">

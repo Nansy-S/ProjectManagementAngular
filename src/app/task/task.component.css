@@ -2,22 +2,98 @@
 .display-tasks {
   margin: 2% 5%;
   width: 85%;
+  font-family: 'Verdana'; 
+  font-size: 20px; 
+  font-style: normal;
 }
 
 table {
   width: 100%;
 }
 
+.matInput {
+  font-family: 'Verdana'; 
+  font-size: 18px; 
+  font-style: normal;
+}
+
+.search {
+  margin-left: 60%;
+  margin-top: 30px;
+  margin-bottom: -10px;
+}
+
+.search .mat-icon {
+  font-size: 30px;
+}
+
 .mat-form-field {
-  font-size: 16px;
-  width: 100%;
+  font-size: 17px;
+  width: 60%;
+  text-align: right;
+  padding-right: 10px;
 }
 
 .mat-row:hover {
   background: rgba(78, 78, 78, 0.2);
 }
 
-.estimation-time-cell {
-  width: 15%;
+.mat-header-cell {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.mat-table {
+  font-family: 'Verdana'; 
+  font-size: 18px; 
+}
+
+.mat-column-code {
+  max-width: 12%;
+}
+
+.mat-column-priority {
+  max-width: 12%;
+}
+
+.mat-column-dueDate {
+  max-width: 26%;
+}
+
+.mat-column-estimationTime {
+  max-width: 15%;
   text-align: center;
+}
+
+.mat-column-currentStatus {
+  max-width: 20%;
+}
+
+.mat-column-assignee {
+  max-width: 20%;
+}
+
+
+.btn-transparent {
+  min-width: 150px;
+  height: 50px;
+  margin: 60px 10px -100px 165px;
+  border: 2px solid #696969;
+  border-radius: 0.4em;
+  color: #696969;
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.btn-transparent:hover {
+  color: #fff;
+  box-shadow: 0 0 40px 40px #6b6b6b inset;
+}
+
+.not-found {
+  margin: 50px 0px 0px 170px;
+  font-family: 'Verdana'; 
+  font-size: 20px; 
+  font-weight: bold;
+  color: #a1a1a1;
 }
