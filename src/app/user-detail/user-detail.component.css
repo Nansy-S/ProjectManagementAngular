@@ -1,8 +1,32 @@
 .user-detail {
-    margin-top: 20px;
-    margin-left: 40px;
+    width: 95%;
+}
+
+.detail {
+    margin: 50px 0px 20px 200px;
+    font-family: 'Verdana'; 
+    font-size: 18px; 
+}
+
+h2 {
     font-family: 'Verdana'; 
     font-size: 20px; 
-    font-style: normal;
-    
+    font-weight: bold;
+    margin: 0px 0px 40px -30px;
+}
+
+.detail span {
+    font-weight: bold;
+    font-size: 20px; 
+}
+
+.pr-tasks {
+    margin: 30px 0px -30px 170px;
+}
+
+.horizontal-line {
+    margin: 70px 0px 0px 50px;
+    min-width: 60%;
+    min-height: 2px;
+    background: rgba(78, 78, 78, 0.4);
 }

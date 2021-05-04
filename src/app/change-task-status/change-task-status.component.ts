@@ -61,7 +61,9 @@ export class ChangeTaskStatusComponent implements OnInit {
       this.isCloseTask = true;
     }
     if(this.currentUserRole == "Project manager") {
-      this.isCloseTask = true;
+      if(this.task.currentStatus != "Closed") {
+        this.isCloseTask = true;
+      }
     }
   }
 
@@ -96,7 +98,7 @@ export class ChangeTaskStatusComponent implements OnInit {
     if(this.task.currentStatus != "Open") {
       msg = "Task in progress. " + msg;
     } 
-    if(this.currentUserRole == "Project manager") {
+    if(this.currentUserRole == "Project manager" || this.currentUserRole == "Tester") {
       const dialogRefWarn = this.dialog.open(WarningDialogComponent, {
         panelClass: 'custom-dialog',
         data: { context: msg }
@@ -114,9 +116,11 @@ export class ChangeTaskStatusComponent implements OnInit {
 
   saveTaskStatus() {
     this.task.currentStatus = this.newTaskStatus;
+    console.log( this.newTaskStatus);
     this.taskService.changeTaskStatus(this.task)
       .subscribe(task => {
         this.task = task;
+        console.log(this.task);
       });
     this.displaySuccessDialog("Task status changed successfully!");
   }

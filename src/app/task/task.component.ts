@@ -42,9 +42,9 @@ export class TaskComponent implements OnInit {
   
     ngOnInit(): void {
       if(this.project == undefined) {
-        this.isBtnAdd = true;
         this.currentUserId = this.tokenStorage.getUser().id;
         if(this.tokenStorage.getUser().role == "Project manager") {
+          this.isBtnAdd = true;
           this.getTasksByReporter();
         }
         if(this.tokenStorage.getUser().role == "Developer" || 
@@ -52,7 +52,7 @@ export class TaskComponent implements OnInit {
           this.getTasksByAssignee();
         }
       } else { 
-        this.isBtnAdd = false;
+        this.isBtnAdd = true;
         this.getTasksByProject();
       }
     }

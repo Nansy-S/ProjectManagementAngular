@@ -4,6 +4,7 @@
 
 .add-task {
     width: 350px;
+    min-height: 520px;
     margin-left: -10px;
     margin-right: -10px;
     font-family: 'Verdana'; 

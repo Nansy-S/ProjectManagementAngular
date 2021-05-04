@@ -5,7 +5,7 @@
     <h2 *ngIf="project != undefined" >Project code: {{ project.projectCode }} </h2>
         <mat-form-field *ngIf="project == undefined" appearance="fill" floatLabel="never" color="primary">
             <mat-label>Choose project</mat-label>
-            <mat-select [(ngModel)]="newTask.projectId">
+            <mat-select [(ngModel)]="newTask.projectId" name="project-id" required>
                 <mat-option *ngFor="let project of projectList" [value]="project.projectId">
                     {{project.projectCode}}
                 </mat-option>
@@ -14,7 +14,7 @@
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
             <mat-label>Choose priority</mat-label>
-            <mat-select [(ngModel)]="newTask.priority">
+            <mat-select [(ngModel)]="newTask.priority" required>
                 <mat-option *ngFor="let priority of priorityList" [value]="priority">
                     {{priority}}
                 </mat-option>
@@ -23,21 +23,21 @@
 
         <div class="form-group">
             <label for="dueDate">Due Date:</label> 
-            <input type="datetime-local" class="form-control due-date" [(ngModel)]="newTask.dueDate" />
+            <input type="datetime-local" class="form-control due-date" [(ngModel)]="newTask.dueDate" required/>
         </div>
         
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
             <mat-label class="label-add">Estimation time</mat-label>
-            <input matInput type="number" min="1" step="1" [(ngModel)]="newTask.estimationTime"/>
+            <input matInput type="number" min="1" step="1" [(ngModel)]="newTask.estimationTime" required/>
         </mat-form-field>
             
-        <mat-form-field appearance="fill" floatLabel="never" color="primary" class="description-add">
+        <mat-form-field appearance="fill" floatLabel="never" color="primary" class="description-add" required>
             <mat-label>Description</mat-label>
             <textarea matInput [(ngModel)]="newTask.description" class="description-add-textarea"></textarea>
         </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions class="btn-actions">
-        <button class="cansel-btn" (click)="onNoClick()">CANSEL</button>
+        <button class="cansel-btn" (click)="onNoClick()">Canсel</button>
         <button class="save-btn" (click)="onAddClick()" cdkFocusInitial>Add</button>
     </mat-dialog-actions>
 </div>

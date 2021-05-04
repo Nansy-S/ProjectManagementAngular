@@ -20,6 +20,7 @@ export class UserDetailComponent implements OnInit {
   currentUserRole = "";
   taskList: Task[] = [];
   isProfile = true;
+  isManager = false;
 
   constructor(private route: ActivatedRoute,
     private taskService: TaskService,
@@ -31,8 +32,9 @@ export class UserDetailComponent implements OnInit {
     this.currentUserRole = this.tokenStorage.getUser().role;
     this.getUserDetail();
     console.log(this.user);
-    if(this.currentUserRole == "Project manager") {
+    if(this.currentUserRole == "Project manager" || this.currentUserRole == "Administrator") {
       this.isProfile = false;
+      this.isManager = true;
       this.getTasksByAssignee();
     }
   }

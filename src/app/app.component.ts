@@ -25,7 +25,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
-      this.role = this.tokenStorageService.getUser().roles;
+      this.role = this.tokenStorageService.getUser().role;
+      console.log(this.role);
       if (this.role === 'Administrator') {
         this.router.navigate(['/users']);
       }
@@ -39,4 +40,6 @@ export class AppComponent implements OnInit {
       this.router.navigate(['login']);
     }
   }
+
+  
 }

@@ -4,21 +4,21 @@
         <h1 mat-dialog-title>Add Project</h1>
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
             <mat-label class="label-add">Project Code</mat-label>
-            <input matInput type="text" [(ngModel)]="newProject.projectCode"/>
+            <input matInput type="text" [(ngModel)]="newProject.projectCode" required/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary" class="description-add">
             <mat-label>Summary</mat-label>
-            <textarea matInput [(ngModel)]="newProject.summary" class="description-add-textarea"></textarea>
+            <textarea matInput [(ngModel)]="newProject.summary" class="description-add-textarea" required></textarea>
         </mat-form-field>
 
         <div class="form-group">
             <label for="dueDate">Due Date:</label> 
-            <input type="datetime-local" class="form-control due-date" [(ngModel)]="newProject.dueDate" />
+            <input type="datetime-local" class="form-control due-date" [(ngModel)]="newProject.dueDate" required/>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions class="btn-actions">
-        <button class="cansel-btn" (click)="onNoClick()">CANSEL</button>
+        <button class="cansel-btn" (click)="onNoClick()">Canсel</button>
         <button class="save-btn" (click)="onAddClick()" cdkFocusInitial>Add</button>
     </mat-dialog-actions>
 </div>

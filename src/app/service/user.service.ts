@@ -13,6 +13,7 @@ export class UserService {
 
   private usersUrl = 'api/users';
   private userByRoleUrl = 'http://localhost:8080/api/users/role/';
+  private userByEmailUrl = 'http://localhost:8080/api/users/email/';
   private userDetailUrl = 'http://localhost:8080/api/users/';
 
   users: User[] = [];
@@ -34,5 +35,9 @@ export class UserService {
         console.log(user);
         return user;
       }));
+  }
+
+  getUserByEmail(email: string): Observable<User> {
+    return this.http.get<User>(this.userByEmailUrl + email);
   }
 }
