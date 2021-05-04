@@ -27,15 +27,6 @@ export class AppComponent implements OnInit {
     if (this.isLoggedIn) {
       this.role = this.tokenStorageService.getUser().role;
       console.log(this.role);
-      if (this.role === 'Administrator') {
-        this.router.navigate(['/users']);
-      }
-      if (this.role === 'Project manager') {
-        this.router.navigate(['/projects']);
-      }
-      if (this.role === 'Developer' || this.role === 'Tester') {
-        this.router.navigate(['/tasks']);
-      }
     } else {
       this.router.navigate(['login']);
     }

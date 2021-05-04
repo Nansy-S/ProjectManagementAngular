@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit {
       if (this.role === 'Project manager') {
         this.router.navigate(['/projects']);
       }
+      if (this.role === 'Developer' ||
+            this.role === 'Tester') {
+        this.router.navigate(['/tasks']);
+      }
     }
   }
 
