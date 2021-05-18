@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     if (this.isLoggedIn) {
       this.userRole = this.tokenStorageService.getUser().role;
       this.userDetailLink = "/users/detail/" + this.tokenStorageService.getUser().id;
-      if (this.userRole === 'Administrator') {
+      if (this.userRole === 'Администратор') {
         this.showAdminBoard = true;
       }
       if (this.userRole === 'Project manager') {

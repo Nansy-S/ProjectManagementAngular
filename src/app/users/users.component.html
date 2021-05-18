@@ -1,7 +1,9 @@
 
+<button class="btn btn-transparent" (click)="addNewUser()">New User</button>
+
 <div class="search">
     <mat-form-field>
-        <mat-label>SEARCH</mat-label>
+        <mat-label>ПОИСК</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
     </mat-form-field>
     <mat-icon>search</mat-icon>
@@ -11,7 +13,7 @@
     <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
         <!-- FULL NAME Column -->
         <ng-container matColumnDef="full-name">
-            <mat-header-cell *matHeaderCellDef> FULL NAME </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> ФИО </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.name}} 
                 {{element.surname}} {{element.patronymic}} </mat-cell>
         <!-- EMAIL Column -->
@@ -30,7 +32,7 @@
     </mat-table>
 </div>
 <div *ngIf="accounts.length == 0">
-    <h2 class="not-found"> Users not found.</h2>
+    <h2 class="not-found"> Пользователи не найдены.</h2>
 </div>
 
   

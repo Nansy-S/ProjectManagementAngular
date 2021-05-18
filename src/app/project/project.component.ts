@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MatTableDataSource } from '@angular/material/table';
 
 import { Project } from '../entity/project';
@@ -32,7 +31,6 @@ export class ProjectComponent implements OnInit {
     dataSource!: MatTableDataSource<Project>;
   
     constructor(public dialog: MatDialog, 
-        private http: HttpClient,
         private ProjectService: ProjectService,
         private router: Router) { }
   

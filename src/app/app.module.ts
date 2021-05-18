@@ -41,6 +41,7 @@ import { SuccessDialogComponent } from './success-dialog/success-dialog.componen
 import { ChangeTaskStatusComponent } from './change-task-status/change-task-status.component';
 import { UserDetailComponent } from './user-detail/user-detail.component';
 import { AddProjectComponent } from './add-project/add-project.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AddProjectComponent } from './add-project/add-project.component';
     ChangeTaskStatusComponent,
     UserDetailComponent,
     AddProjectComponent,
+    AddUserComponent,
   ],
   imports: [
     CommonModule,

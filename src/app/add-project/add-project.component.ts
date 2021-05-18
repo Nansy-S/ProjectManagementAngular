@@ -1,7 +1,6 @@
-import { Component, OnInit, Input, Inject } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -27,7 +26,6 @@ export class AddProjectComponent implements OnInit {
   };
 
   constructor(private route: ActivatedRoute,
-    private http: HttpClient,
     private ProjectService: ProjectService,
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<AddProjectComponent>

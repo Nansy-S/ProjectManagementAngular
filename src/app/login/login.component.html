@@ -51,7 +51,7 @@
           <div
             class="alert alert-danger"
             role="alert"
-            *ngIf="f.submitted && isLoginFailed"
+            *ngIf="isLoginFailed"
           >
             Login failed: {{ errorMessage }}
           </div>

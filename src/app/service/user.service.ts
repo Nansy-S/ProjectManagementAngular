@@ -11,10 +11,10 @@ import { User } from '../entity/user';
 
 export class UserService {
 
-  private usersUrl = 'api/users';
   private userByRoleUrl = 'http://localhost:8080/api/users/role/';
   private userByEmailUrl = 'http://localhost:8080/api/users/email/';
   private userDetailUrl = 'http://localhost:8080/api/users/';
+  private addUserUrl = 'http://localhost:8080/api/users/add';
 
   users: User[] = [];
 
@@ -39,5 +39,10 @@ export class UserService {
 
   getUserByEmail(email: string): Observable<User> {
     return this.http.get<User>(this.userByEmailUrl + email);
+  }
+
+  /** CREATE User */
+  create(user: User): Observable<any> {
+    return this.http.post(this.addUserUrl, user);
   }
 }

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 
 import { User } from '../entity/user';
 import { Account } from '../entity/account';
+import { AddUserComponent } from '../add-user/add-user.component';
 
-import { UserService } from '../service/user.service';
 import { AccountService } from '../service/account.service';
 
 @Component({
@@ -25,8 +25,7 @@ export class UsersComponent implements OnInit {
   columnsToDisplay = ['full-name', 'email'];
   dataSource!: MatTableDataSource<Account>;
 
-  constructor(private http: HttpClient,
-      private UserService: UserService,
+  constructor(public dialog: MatDialog, 
       private AccountService: AccountService,
       private route: Router) { }
 
@@ -50,5 +49,11 @@ export class UsersComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  addNewUser() {
+    this.dialog.open(AddUserComponent, {
+      panelClass: 'custom-dialog-add-project'
+    });
   }
 }

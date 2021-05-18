@@ -1,9 +1,9 @@
 import { Account } from './account'
 
 export interface User {
-    userId: number;
+    userId?: number;
     position: string;
-    currentStatus: string;
+    currentStatus?: string;
     phone: string;
     accountInfo: Account;
 }
