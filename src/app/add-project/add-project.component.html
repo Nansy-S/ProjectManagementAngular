@@ -1,24 +1,24 @@
 <!-- Modal -->
 <div>
     <mat-dialog-content class="add-project">
-        <h1 mat-dialog-title>Add Project</h1>
+        <h1 mat-dialog-title>Добавление проекта</h1>
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">Project Code</mat-label>
+            <mat-label class="label-add">Код проекта: </mat-label>
             <input matInput type="text" [(ngModel)]="newProject.projectCode" required/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary" class="description-add">
-            <mat-label>Summary</mat-label>
+            <mat-label>Описание: </mat-label>
             <textarea matInput [(ngModel)]="newProject.summary" class="description-add-textarea" required></textarea>
         </mat-form-field>
 
         <div class="form-group">
-            <label for="dueDate">Due Date:</label> 
+            <label for="dueDate">Дедлайн:</label> 
             <input type="datetime-local" class="form-control due-date" [(ngModel)]="newProject.dueDate" required/>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions class="btn-actions">
-        <button class="cansel-btn" (click)="onNoClick()">Canсel</button>
-        <button class="save-btn" (click)="onAddClick()" cdkFocusInitial>Add</button>
+        <button class="cansel-btn" (click)="onNoClick()">Отмена</button>
+        <button class="save-btn" (click)="onAddClick()" cdkFocusInitial>Добавить</button>
     </mat-dialog-actions>
 </div>

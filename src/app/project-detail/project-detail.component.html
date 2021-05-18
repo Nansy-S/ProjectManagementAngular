@@ -1,15 +1,15 @@
 <div class="project-detail">
     <div *ngIf="project">
         <div class="detail">
-            <h2>Project Details</h2>
-            <p>Code: <span>{{project.projectCode}}</span></p>
-            <p>Summary: <span>{{project.summary}}</span></p>
-            <p>Due Date: <span>{{project.dueDate | date:'medium'}}</span></p>
-            <p>Status: <span>{{project.currentStatus}}</span></p>
+            <h2>Информация о проекте</h2>
+            <p>Код: <span>{{project.projectCode}}</span></p>
+            <p>Описание: <span>{{project.summary}}</span></p>
+            <p>Дедлайн: <span>{{project.dueDate | date:'medium'}}</span></p>
+            <p>Статус: <span>{{project.currentStatus}}</span></p>
         
         </div>
         <div class="horizontal-line"></div>
-        <h2 class="pr-tasks">Project Tasks</h2>
+        <h2 class="pr-tasks">Задачи проекта</h2>
         <app-task [project]="project"></app-task>
     </div>  
 </div>

@@ -65,26 +65,26 @@ export class TaskDetailComponent implements OnInit {
 
   assigneTask(task: Task) {
     let isWarnDialog = false;
-    if(task.currentStatus == "Open" || task.currentStatus == "Reopened") {
-      this.assigneeRole = "Developer";
+    if(task.currentStatus == "Открыта" || task.currentStatus == "Переоткрыта") {
+      this.assigneeRole = "Разработчик";
     }
-    if(task.currentStatus == "Resolved") {
+    if(task.currentStatus == "Реализована") {
       this.assigneeRole = "Tester";
       isWarnDialog = true;
-      this.warnMsg = "Task was resolved but not ready for test. Continue change assignee?";
+      this.warnMsg = "Задача выполнена, но не готова к тестированию. Продолжить смену исполнителя?";
     }
-    if(task.currentStatus == "In progress") {
-      this.assigneeRole = "Developer";
+    if(task.currentStatus == "В процессе") {
+      this.assigneeRole = "Разработчик";
       isWarnDialog = true;
-      this.warnMsg = "Task in progress. Are you sure that you want to change assignee?";
+      this.warnMsg = "Задача в работе. Вы уверены, что хотите сменить исполнителя?";
     }
-    if(task.currentStatus == "Ready for Test") {
-      this.assigneeRole = "Tester";
+    if(task.currentStatus == "Готова к тестированию") {
+      this.assigneeRole = "Тестировщик";
     }
-    if(task.currentStatus == "Tested") {
-      this.assigneeRole = "Tester";
+    if(task.currentStatus == "Тестируется") {
+      this.assigneeRole = "Тестировщик";
       isWarnDialog = true;
-      this.warnMsg = "Task in progress. Are you sure that you want to change assignee?";
+      this.warnMsg = "Задача в работе. Вы уверены, что хотите сменить исполнителя?";
     }
     
     if(!isWarnDialog) {
@@ -98,8 +98,8 @@ export class TaskDetailComponent implements OnInit {
       dialogRefWarn.afterClosed().subscribe(result => {
         if(result) {
           this.changeAssignee();
-          if(task.currentStatus == "Resolved") {
-            task.currentStatus = "Ready for Test";
+          if(task.currentStatus == "Реализована") {
+            task.currentStatus = "Готова к тестированию";
             this.taskService.changeTaskStatus(task);
           }
         }
@@ -133,7 +133,7 @@ export class TaskDetailComponent implements OnInit {
       .subscribe(task => {
         this.task = task;
       });
-    this.displaySuccessDialog("Assignee changed successfully!");
+    this.displaySuccessDialog("Исполнитель успешно изменен!");
   }
 
   getUsersByRole() {

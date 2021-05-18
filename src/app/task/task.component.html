@@ -1,9 +1,9 @@
 
-<button *ngIf="isBtnAdd" class="btn btn-transparent" (click)="addNewTask()">New Task</button>
+<button *ngIf="isBtnAdd" class="btn btn-transparent" (click)="addNewTask()">Добавить задачу</button>
 
 <div class="search">
     <mat-form-field>
-        <mat-label>SEARCH</mat-label>
+        <mat-label>ПОИСК</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Enter value" #input>
     </mat-form-field>
     <mat-icon>search</mat-icon>
@@ -13,32 +13,32 @@
     <mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 table-task">
         <!-- CODE Column -->
         <ng-container matColumnDef="code">
-            <mat-header-cell *matHeaderCellDef> CODE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> КОД </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.taskCode}} </mat-cell>
         </ng-container>
         <!-- PRIORITY Column -->
         <ng-container matColumnDef="priority">
-            <mat-header-cell *matHeaderCellDef> PRIORITY </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> ПРИОРИТЕТ </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.priority}} </mat-cell>
         </ng-container>
         <!-- DUE DATE Column -->
         <ng-container matColumnDef="dueDate">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> DUE DATE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ДЕДЛАЙН </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.dueDate | date:'medium'}} </mat-cell>
         </ng-container>
         <!-- ECTIMATION TIME Column -->
         <ng-container matColumnDef="estimationTime" class = "estimation-time-cell">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> ECTIMATION TIME </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.estimationTime}} hr</mat-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ВРЕМЯ ВЫПОЛНЕНИЯ </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.estimationTime}} ч</mat-cell>
         </ng-container>
         <!-- STATUS Column -->
         <ng-container matColumnDef="currentStatus">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> STATUS </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> СТАТУС </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.currentStatus}} </mat-cell>
         </ng-container>
         <!-- ASSIGNEE Column -->
         <ng-container matColumnDef="assignee">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> ASSIGNEE </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> ИСПОЛНИТЕЛЬ </mat-header-cell>
             <mat-cell *matCellDef="let element">  
                 {{element.assigneeInfo.accountInfo.name}} 
                 {{element.assigneeInfo.accountInfo.patronymic}}
@@ -50,10 +50,10 @@
 
         <!-- Row shown when there is no matching data. -->
         <tr class="mat-row" *matNoDataRow>
-            <td class="mat-cell" colspan="6">No data matching the filter "{{input.value}}"</td>
+            <td class="mat-cell" colspan="6">Нет данных, соответствующих фильтру "{{input.value}}"</td>
         </tr>
     </mat-table>
 </div>
 <div *ngIf="tasks.length == 0">
-    <h2 class="not-found"> Tasks not found.</h2>
+    <h2 class="not-found"> Задачи не найдены.</h2>
 </div>

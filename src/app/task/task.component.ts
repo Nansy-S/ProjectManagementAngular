@@ -43,12 +43,12 @@ export class TaskComponent implements OnInit {
     ngOnInit(): void {
       if(this.project == undefined) {
         this.currentUserId = this.tokenStorage.getUser().id;
-        if(this.tokenStorage.getUser().role == "Project manager") {
+        if(this.tokenStorage.getUser().role == "Менеджер проекта") {
           this.isBtnAdd = true;
           this.getTasksByReporter();
         }
-        if(this.tokenStorage.getUser().role == "Developer" || 
-            this.tokenStorage.getUser().role == "Tester") {
+        if(this.tokenStorage.getUser().role == "Разработчик" || 
+            this.tokenStorage.getUser().role == "Тестировщик") {
           this.getTasksByAssignee();
         }
       } else { 

@@ -53,7 +53,7 @@ export class AddUserComponent implements OnInit {
     this.userService.create(this.newUser)
         .subscribe(user => {
           if(user) {
-            this.displaySuccessDialog("User added successfully!");
+            this.displaySuccessDialog("Пользователь успешно добавлен!");
           }
     });
   }

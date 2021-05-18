@@ -1,27 +1,27 @@
 <div class="user-detail">
     <div class="detail">
-        <h2>User Details</h2>
-        <p><span>Full name: </span>
+        <h2>Информация о пользователе</h2>
+        <p><span>ФИО: </span>
             {{user.accountInfo.name}} 
             {{user.accountInfo.patronymic}}
             {{user.accountInfo.surname}}
         </p>
         <p><span>Email: </span>{{user.accountInfo.email}}</p>
-        <p><span>Position: </span>{{user.position}}</p>
-        <p><span>Phone: </span>{{user.phone}}</p>
-        <p><span>Current status: </span>{{user.currentStatus}}</p>
+        <p><span>Должность: </span>{{user.position}}</p>
+        <p><span>Телефон: </span>{{user.phone}}</p>
+        <p><span>Текущий статус: </span>{{user.currentStatus}}</p>
     </div>  
     <div *ngIf="isProfile && isManager">
         <div class="horizontal-line"></div>
-        <h2>Tasks</h2>
+        <h2>Задачи</h2>
         <div *ngIf="taskList.length > 0" class="display-tasks">
             <table class="table table-hover">
                 <thead><tr class="header-table-dark">
-                    <td>CODE</td>
-                    <td>PRIORITY</td>
-                    <td>DUE DATE</td>
-                    <td>ECTIMATION TIME</td>
-                    <td>STATUS</td>
+                    <td>КОД</td>
+                    <td>ПРИОРИТЕТ</td>
+                    <td>ДЕДЛАЙН</td>
+                    <td>ВРЕМЯ ВЫПОЛНЕНИЯ</td>
+                    <td>СТАТУС</td>
                 </tr></thead>
                 <tbody><tr *ngFor="let task of taskList" class="table-secondary" 
                     (click)="goToTaskDetail(task)">
@@ -34,7 +34,7 @@
             </table>
         </div>
         <div *ngIf="taskList.length == 0">
-            <h2> Tasks not found.</h2>
+            <h2> У данного пользователя нет назначенных задач.</h2>
         </div>
     </div>
 </div>

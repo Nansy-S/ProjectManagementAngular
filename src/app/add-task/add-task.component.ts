@@ -63,7 +63,7 @@ export class AddTaskComponent implements OnInit {
     this.taskService.create(this.newTask)
       .subscribe(task => {
         this.isAddedTask = true;
-        this.displaySuccessDialog("Task added successfully!");
+        this.displaySuccessDialog("Задача успешно добавлена!");
       });
   }
 

@@ -2,29 +2,29 @@
     <a href="" class="navbar-brand">{{title}}</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
         <li class="nav-item" *ngIf="showAdminBoard">
-            <a class="nav-link" href="/users">USERS</a>
+            <a class="nav-link" href="/users">ПОЛЬЗОВАТЕЛИ</a>
         </li>
         <li class="nav-item margin-item" *ngIf="showManagerBoard" >
-            <a class="nav-link" href="/projects">PROJECTS</a>
+            <a class="nav-link" href="/projects">ПРОЕКТЫ</a>
         </li>
         <li class="nav-item margin-item" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard" >
-            <a class="nav-link" href="/tasks">TASKS</a>
+            <a class="nav-link" href="/tasks">ЗАДАЧИ</a>
         </li>
         <li class="nav-item margin-item link-profile" *ngIf="showManagerBoard || showDeveloperBoard || showTesterBoard">
-            <a href={{userDetailLink}} class="nav-link">Profile</a>
+            <a href={{userDetailLink}} class="nav-link">Профиль</a>
         </li>
     </ul>
 
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login">Вход</a>
       </li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">Выход</a>
       </li>
     </ul>
   </nav>

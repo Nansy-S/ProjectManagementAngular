@@ -1,10 +1,8 @@
-import { Injectable, Component, OnInit, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 
-import { Account } from '../entity/account';
 import { LoginInfo } from '../login/login-info';
 
 const loginUrl = 'http://localhost:8080/api/login';

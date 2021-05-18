@@ -32,7 +32,7 @@ export class UserDetailComponent implements OnInit {
     this.currentUserRole = this.tokenStorage.getUser().role;
     this.getUserDetail();
     console.log(this.user);
-    if(this.currentUserRole == "Project manager" || this.currentUserRole == "Administrator") {
+    if(this.currentUserRole == "Менеджер проекта" || this.currentUserRole == "Администратор") {
       this.isProfile = false;
       this.isManager = true;
       this.getTasksByAssignee();

@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { TokenStorageService } from './service/token-storage.service';
 
 import { LoginService } from './service/login.service';
-import { User } from './entity/user';
 
 @Component({
   selector: 'app-root',

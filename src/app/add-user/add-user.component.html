@@ -1,34 +1,34 @@
 <!-- Modal -->
 <div>
     <mat-dialog-content class="add-user">
-        <h1 mat-dialog-title>Add User</h1>
+        <h1 mat-dialog-title>Добавление пользователя</h1>
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">surname</mat-label>
+            <mat-label class="label-add">Фамилия</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.accountInfo.surname" required/>
         </mat-form-field>
         
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">name</mat-label>
+            <mat-label class="label-add">Имя</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.accountInfo.name" required/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">patronymic</mat-label>
+            <mat-label class="label-add">Отчество</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.accountInfo.patronymic" required/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">email</mat-label>
+            <mat-label class="label-add">Email</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.accountInfo.email" required/>
         </mat-form-field>
         
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">password</mat-label>
+            <mat-label class="label-add">Пароль</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.accountInfo.password" required/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label>Choose role</mat-label>
+            <mat-label>Выберите роль</mat-label>
             <mat-select [(ngModel)]="newUser.accountInfo.role" required>
                 <mat-option *ngFor="let role of roleList" [value]="role">
                     {{role}}
@@ -37,19 +37,19 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">position</mat-label>
+            <mat-label class="label-add">Должность</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.position" required/>
         </mat-form-field>
 
         <mat-form-field appearance="fill" floatLabel="never" color="primary">
-            <mat-label class="label-add">phone</mat-label>
+            <mat-label class="label-add">Номер телефона</mat-label>
             <input matInput type="text" [(ngModel)]="newUser.phone" required/>
         </mat-form-field>
 
 
     </mat-dialog-content>
     <mat-dialog-actions class="btn-actions">
-        <button class="cansel-btn" (click)="onNoClick()">Canсel</button>
-        <button class="save-btn" (click)="onAddClick()" cdkFocusInitial>Add</button>
+        <button class="cansel-btn" (click)="onNoClick()">Отмена</button>
+        <button class="save-btn" (click)="onAddClick()" cdkFocusInitial>Добавить</button>
     </mat-dialog-actions>
 </div>

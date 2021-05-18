@@ -2,13 +2,13 @@
 <div class="dialog d-warning"> 
     <mat-dialog-content class="content">
         <mat-icon class="yellow-icon">warning</mat-icon>
-        <h1 mat-dialog-title>Attention</h1>
+        <h1 mat-dialog-title>Внимание!</h1>
         <div mat-dialog-content class="warn-context">
             <p> {{ data.context }} </p>
         </div>
     </mat-dialog-content>
     <mat-dialog-actions>
-        <button class="cansel-btn" (click)="onNoClick()">Canсel</button>
-        <button class="save-btn" [mat-dialog-close] ="true" cdkFocusInitial>Сontinue</button>
+        <button class="cansel-btn" (click)="onNoClick()">Отмена</button>
+        <button class="save-btn" [mat-dialog-close] ="true" cdkFocusInitial>Продолжить</button>
     </mat-dialog-actions>
 </div>

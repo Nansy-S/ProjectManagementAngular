@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenStorageService } from '../service/token-storage.service';
-import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,10 +9,9 @@ import { LoginService } from '../service/login.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private tokenStorageService: TokenStorageService,
-    private router: Router) { }
+  constructor(private tokenStorageService: TokenStorageService) { }
 
-  title = 'Project Management Application';
+  title = 'Project Management App';
   
   showAdminBoard = false;
   showManagerBoard = false;
@@ -32,13 +30,13 @@ export class DashboardComponent implements OnInit {
       if (this.userRole === 'Администратор') {
         this.showAdminBoard = true;
       }
-      if (this.userRole === 'Project manager') {
+      if (this.userRole === 'Менеджер проекта') {
         this.showManagerBoard = true;
       }
-      if (this.userRole === 'Developer') {
+      if (this.userRole === 'Разработчик') {
         this.showDeveloperBoard = true;
       }
-      if (this.userRole === 'Tester') {
+      if (this.userRole === 'Тестировщик') {
         this.showTesterBoard = true;
       }
     }

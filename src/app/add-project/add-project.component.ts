@@ -39,7 +39,7 @@ export class AddProjectComponent implements OnInit {
     this.ProjectService.create(this.newProject)
         .subscribe(project => {
           if(project) {
-            this.displaySuccessDialog("Project added successfully!");
+            this.displaySuccessDialog("Проект успешно добавлен!");
           }
     });
   }

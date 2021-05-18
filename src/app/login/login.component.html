@@ -1,65 +1,37 @@
 <div class="main">
   <div class="col-md-6 col-sm-12">
      <div class="login-form">
-      <form class="form-horizontal"
-        *ngIf="!isLoggedIn"
-        name="form"
-        (ngSubmit)="f.form.valid && onSubmit()"
-        #f="ngForm"
-        novalidate
-      >
-      <h2>Log In</h2>
+      <form class="form-horizontal" *ngIf="!isLoggedIn" #f="ngForm"
+        name="form" (ngSubmit)="f.form.valid && onSubmit()" novalidate>
+      <h2>ВХОД</h2>
       <div class="form-group">
           <input type="text" class="form-control" name="email" id="inputEmail" placeholder="E-mail"
-          [(ngModel)]="form.email"
-            required
-            #email="ngModel">
-            <i class="fa fa-user"></i>
-
+          [(ngModel)]="form.email" #email="ngModel" required>
+          <i class="fa fa-user"></i>
           <div class="alert alert-danger" role="alert" *ngIf="email.errors && f.submitted">
-            Email is required!
+            Введите Email!
           </div>
         </div>
         <div class="form-group">
-          <input
-            type="password"
-            class="form-control"
-            name="password"
-            placeholder="Password"
-            [(ngModel)]="form.password"
-            required
-            minlength="4"
-            #password="ngModel"
-          />
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="password.errors && f.submitted"
-          >
-            <div *ngIf="password.errors.required">Password is required</div>
-            <div *ngIf="password.errors.minlength">
-              Password must be at least 4 characters
-            </div>
+          <input type="password" class="form-control" name="password" placeholder="Пароль" [(ngModel)]="form.password"
+            minlength="4" #password="ngModel" required/>
+          <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+            <div *ngIf="password.errors.required">Введите пароль!</div>
+            <div *ngIf="password.errors.minlength"> Пароль должен содержать более 4 символов. </div>
           </div>
         </div>
         <div class="form-group">
-          <button class="btn btn-dark btn-block btn-login">
-            Login
-          </button>
+          <button class="btn btn-dark btn-block btn-login"> Вход </button>
         </div>
         <div class="form-group">
-          <div
-            class="alert alert-danger"
-            role="alert"
-            *ngIf="isLoginFailed"
-          >
-            Login failed: {{ errorMessage }}
+          <div class="alert alert-danger" role="alert" *ngIf="isLoginFailed">
+            Вход не выполнен. Проверьте корректность введенных данных.
           </div>
         </div>
       </form>
   
       <div class="alert alert-success" *ngIf="isLoggedIn">
-        Logged in as {{ role }}.
+        Вы вошли как {{ role }}.
       </div>
     </div>
   </div>

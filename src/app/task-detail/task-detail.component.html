@@ -3,33 +3,33 @@
         <table class="table-details" >
             <tr>
                 <td class="details">
-                    <p>Code: <span>{{task.taskCode}}</span></p>
-                    <p>Priority: <span>{{task.priority}}</span></p>
-                    <p>Status: <span>{{task.currentStatus}}</span></p>
-                    <p>Due Date: <span>{{task.dueDate | date:'medium'}}</span></p>
-                    <p>Estimation Time: <span>{{task.estimationTime}}</span></p>
+                    <p>Код: <span>{{task.taskCode}}</span></p>
+                    <p>Приоритет: <span>{{task.priority}}</span></p>
+                    <p>Статус: <span>{{task.currentStatus}}</span></p>
+                    <p>Дедлайн: <span>{{task.dueDate | date:'medium'}}</span></p>
+                    <p>Оценка времени выполнения: <span>{{task.estimationTime}} ч</span></p>
                 </td>
                 <td>
-                    <p><span>Assignee: </span></p>
-                    <p>Full name: 
+                    <p><span>Исполнитель: </span></p>
+                    <p>ФИО: 
                         <span>{{task.assigneeInfo.accountInfo.name}} 
                         {{task.assigneeInfo.accountInfo.patronymic}}
                         {{task.assigneeInfo.accountInfo.surname}}</span> </p>
                     <p>Email: <span>{{task.assigneeInfo.accountInfo.email}}</span></p>
-                    <p>Position: <span>{{task.assigneeInfo.position}}</span></p>
-                    <p>Phone:<span>{{task.assigneeInfo.phone}}</span></p>
+                    <p>Должность: <span>{{task.assigneeInfo.position}}</span></p>
+                    <p>Телефон:<span>{{task.assigneeInfo.phone}}</span></p>
                 </td>
             </tr>      
             <tr>
                 <td colspan="2">
-                    <p class="cell-description">Description: <span>{{task.description}}</span></p>
+                    <p class="cell-description">Описание: <span>{{task.description}}</span></p>
                 </td>
             </tr>
             <tr>
                 <td colspan="2"><div class="horizontal-line"></div></td>
             </tr>   
             <tr class="row-btn">
-                <td class="cell-btn-assigne"> <button class="btn btn-dark" (click)="assigneTask(task)">Change Assigne</button> </td>
+                <td class="cell-btn-assigne"> <button class="btn btn-dark" (click)="assigneTask(task)">Сменить исполнителя</button> </td>
                 <td> <app-change-task-status [task]="task"></app-change-task-status> </td>
             </tr>
         </table>

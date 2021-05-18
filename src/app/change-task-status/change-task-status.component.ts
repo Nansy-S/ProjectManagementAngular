@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { Task } from '../entity/task';
-import { DialogChangeTaskAssigneeData, DialogDataMsg, Responce } from '../entity/dialog-data';
 
 import { WarningDialogComponent } from '../warning-dialog/warning-dialog.component';
 import { SuccessDialogComponent } from '../success-dialog/success-dialog.component';
@@ -43,62 +42,62 @@ export class ChangeTaskStatusComponent implements OnInit {
   }
 
   displayButtonChangeStatus() {
-    if(this.currentUserRole == "Developer" &&
-        (this.task.currentStatus == "Open" || this.task.currentStatus == "Reopened")) {
+    if(this.currentUserRole == "Разработчик" &&
+        (this.task.currentStatus == "Открыта" || this.task.currentStatus == "Переоткрыта")) {
       this.isStartTask = true;
     }
-    if(this.currentUserRole == "Developer" && this.task.currentStatus == "In progress") {
+    if(this.currentUserRole == "Разработчик" && this.task.currentStatus == "В процессе") {
       this.isResolvedTask = true;
     }
-    if(this.currentUserRole == "Developer" && this.task.currentStatus == "Resolved") {
+    if(this.currentUserRole == "Разработчик" && this.task.currentStatus == "Реализована") {
       this.isSendOnTest = true;
     }
-    if(this.currentUserRole == "Tester" && this.task.currentStatus == "Ready for Test") {
+    if(this.currentUserRole == "Тестировщик" && this.task.currentStatus == "Готова к тестированию") {
       this.isStartTest = true;
     }
-    if(this.currentUserRole == "Tester" && this.task.currentStatus == "Tested") {
+    if(this.currentUserRole == "Тестировщик" && this.task.currentStatus == "Тестируется") {
       this.isReopenTask = true;
       this.isCloseTask = true;
     }
-    if(this.currentUserRole == "Project manager") {
-      if(this.task.currentStatus != "Closed") {
+    if(this.currentUserRole == "Менеджер проекта") {
+      if(this.task.currentStatus != "Закрыта") {
         this.isCloseTask = true;
       }
     }
   }
 
   startTask() {
-    this.newTaskStatus = "In progress";
+    this.newTaskStatus = "В процессе";
     this.saveTaskStatus();
   }
 
   resolvedTask() {
-    this.newTaskStatus = "Resolved";
+    this.newTaskStatus = "Реализована";
     this.saveTaskStatus();
   }
 
   sendOnTest() {
-    this.newTaskStatus = "Ready for Test";
+    this.newTaskStatus = "Готова к тестированию";
     this.saveTaskStatus();
   }
 
   startTest() {
-    this.newTaskStatus = "Tested";
+    this.newTaskStatus = "Тестируется";
     this.saveTaskStatus();
   }
 
   reopenTask() {
-    this.newTaskStatus = "Reopened";
+    this.newTaskStatus = "Переоткрыта";
     this.saveTaskStatus();
   }
 
   closeTask() {
-    this.newTaskStatus = "Closed";
-    let msg = "Are you sure you close task?";
-    if(this.task.currentStatus != "Open") {
-      msg = "Task in progress. " + msg;
+    this.newTaskStatus = "Закрыта";
+    let msg = "Вы уверены, что хотите закрыть задачу?";
+    if(this.task.currentStatus != "Открыта") {
+      msg = "Задача в работе. " + msg;
     } 
-    if(this.currentUserRole == "Project manager" || this.currentUserRole == "Tester") {
+    if(this.currentUserRole == "Менеджер проекта" || this.currentUserRole == "Тестировщик") {
       const dialogRefWarn = this.dialog.open(WarningDialogComponent, {
         panelClass: 'custom-dialog',
         data: { context: msg }
@@ -122,7 +121,7 @@ export class ChangeTaskStatusComponent implements OnInit {
         this.task = task;
         console.log(this.task);
       });
-    this.displaySuccessDialog("Task status changed successfully!");
+    this.displaySuccessDialog("Статус задачи успешно изменен!");
   }
 
   displaySuccessDialog(msg: string) {
